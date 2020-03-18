@@ -4,12 +4,14 @@
 それをWEB上から操作できるようにする
 
 アクセス権限
-管理者権限を持った従業員のみ。
+入力者（通常職員）は変化するため、管理者権限を付与、剥奪可能にする必要がある。
+従業員が管理者権限をもつことにする（admin属性）
+
 従業員のポイントを入力する画面が存在する（カメラチェック)
 評価項目は１０個（項目名、数は変更の可能性あり）
 
 DB設計
-:employee [employee_id,name,admin(:boolean , default: false)]
+:employee [employee_id,name,admin]
 :attendance [employee_id,もろもろの評価項目,point]
 
 employee

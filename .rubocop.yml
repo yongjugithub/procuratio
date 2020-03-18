@@ -18,7 +18,10 @@ AllCops:
     - config.ru
     - app/controllers/application_controller.rb
     - app/helpers/application_helper.rb
-    - spec/spec_helper.rb 
+    - spec/spec_helper.rb
 
 Rails:
   Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
