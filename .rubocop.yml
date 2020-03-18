@@ -28,3 +28,6 @@ Style/FrozenStringLiteralComment:
 
 Layout/LineLength:
   Enabled: 100
+
+Documentation:
+    Enabled: false
