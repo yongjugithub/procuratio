@@ -8,4 +8,5 @@
 class Employee < ApplicationRecord
   validates :employee_id, presence: true, uniqueness: true
   validates :name, presence: true
+  has_secure_password
 end
