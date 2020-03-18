@@ -13,7 +13,7 @@ RSpec.describe Employee, type: :model do
       expect(employee2).not_to be_valid
     end
 
-    it '名前がなければ、無効' do
+    it '名前がなければ無効' do
       employee.name = ' '
       expect(employee).not_to be_valid
     end
@@ -21,6 +21,16 @@ RSpec.describe Employee, type: :model do
     it '管理者権限をもつことができる' do
       employee.admin = true
       expect(employee).to be_valid
+    end
+
+    it 'パスワードが空なら無効' do
+      employee.password = nil
+      expect(employee).not_to be_valid
+    end
+
+    it 'パスワードが４文字以下なら無効' do
+      employee.password = "a" * 3
+      expect(employee).not_to be_valid
     end
   end
 end
