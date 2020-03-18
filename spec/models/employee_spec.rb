@@ -29,7 +29,7 @@ RSpec.describe Employee, type: :model do
     end
 
     it 'パスワードが４文字以下なら無効' do
-      employee.password = "a" * 3
+      employee.password = 'a' * 3
       expect(employee).not_to be_valid
     end
   end
