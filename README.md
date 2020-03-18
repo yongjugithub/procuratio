@@ -24,5 +24,6 @@ git はdevelopブランチで運用
 タイムゾーンは日本時間
 AWSで運用予定のため、datebaseは全ての開発環境でmysqlを採用する
 rubocop を使用して品質を保つ
+https://github.com/rubocop-hq/rubocop-rails
 テストはRspec
 デザインはbootstrap

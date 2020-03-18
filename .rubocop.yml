@@ -1,0 +1,22 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  Exclude:
+    - vendor/bundle/**/*
+    - bin/*
+    - db/**/*
+    - config/**/*
+    - app/channels/**/*
+    - app/mailers/**/*
+    - app/jobs/**/*
+    - app/models/**
+    - node_modules/**/**
+    - Gemfile
+    - Rakefile
+    - config.ru
+    - app/controllers/application_controller.rb
+    - app/helpers/application_helper.rb
+    
+Rails:
+  Enabled: true
