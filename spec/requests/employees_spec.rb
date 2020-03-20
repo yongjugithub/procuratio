@@ -1,22 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe 'Employees', type: :request do
-  let(:employee) { create(:employee, employee_id: 3, name: 'test user', admin: 'false', password: 'password', password_confirmation: 'password') }
+  describe 'employee/new' do
+    context 'when 正常系' do
+      it '新規登録ページにアクセスできる' do
+        get new_employee_path
+        expect(response).to have_http_status(:success)
+      end
 
-  describe 'employeeページにアクセスできる' do
-    xit 'indexページにアクセスできる' do
-      get employees_path
-      expect(response).to be_success
+      it '有効な属性値の場合ユーザが登録され,リダイレクトされる' do
+        expect do
+          post employees_url, params: {
+            employee: {
+              employee_id: 3,
+              name: 'test user',
+              password: 'password',
+              password_confirmation: 'password'
+            }
+          }
+        end.to change(Employee, :count).by(1)
+        expect(response.status).to eq 302
+      end
     end
 
-    xit 'newページにアクセスできる' do
-      get new_employee_path
-      expect(response).to be_success
-    end
-
-    xit 'showページにアクセスできる' do
-      get employee_path(employee.id)
-      expect(response).to be_success
+    xcontext '異常系' do
     end
   end
 end

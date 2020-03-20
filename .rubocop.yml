@@ -30,8 +30,19 @@ Layout/LineLength:
   Enabled: 100
 
 Documentation:
-    Enabled: false
+  Enabled: false
 
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+
+#テストの行が5行以上になっても良い
+Metrics/ExampleLength:
+  Enabled: false
+
+#空のテストがあっても良い
+Metrics/EmptyExampleGroup:
+  Enabled: false
+
+Metrics/MultipleExpectations:
+  Enabled: false
