@@ -1,5 +1,6 @@
 require:
   - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   Exclude:
@@ -17,6 +18,31 @@ AllCops:
     - config.ru
     - app/controllers/application_controller.rb
     - app/helpers/application_helper.rb
-    
+    - spec/spec_helper.rb
+
 Rails:
   Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: 100
+
+Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+#テストの行が5行以上になっても良い
+Metrics/ExampleLength:
+  Enabled: false
+
+#空のテストがあっても良い
+Metrics/EmptyExampleGroup:
+  Enabled: false
+
+Metrics/MultipleExpectations:
+  Enabled: false
