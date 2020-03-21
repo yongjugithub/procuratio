@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Employees', type: :request do
-  describe 'employee/new' do
+  describe 'ユーザー登録 APIテスト' do
     context 'when 正常系' do
       it '新規登録ページにアクセスできる' do
         get new_employee_path
