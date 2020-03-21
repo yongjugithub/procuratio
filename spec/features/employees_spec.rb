@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Employees', type: :feature do
+  it '共通ヘッダーのリンクからトップページに移動できる' do
+    visit '/employees/new'
+    expect(page).to have_link 'Procuratio'
+    click_on 'Procuratio'
+    expect(page).to have_current_path('/employees')
+  end
+
   it 'ユーザ登録 UIテスト' do
     visit '/employees/new'
 
