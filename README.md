@@ -7,12 +7,15 @@
 # Requirements
 - ruby '2.6.3'
 - Rails 6系
-- git はdevelopブランチで運用
 - タイムゾーンは日本時間
 - AWSで運用予定のため、datebaseは全ての開発環境でmysqlを採用する
-- git add&commit 時に、rubocop を使用して常にgreenな状態に戻れるようにする
 - テストはRspec
 - デザインはbootstrap
+
+# 開発方針
+- gitの開発ブランチで開発をおこなう
+- git diff --stat, add&commit 時にはrubocop,rspecが常にgreenな状態に戻れるようにする
+- 開発ブランチからmasterブランチへPRををだすことで目視でも確認する
 
 # DB設計
 employee [employee_id,name,admin,password_digest]
