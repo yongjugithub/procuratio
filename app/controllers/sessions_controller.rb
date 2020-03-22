@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     employee = Employee.find_by(employee_id: params[:session][:employee_id])
