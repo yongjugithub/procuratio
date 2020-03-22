@@ -8,7 +8,7 @@ RSpec.describe 'Sessions', type: :request do
         expect(response).to have_http_status(:success)
       end
 
-      it '無効なパラメータの時はもう一度ページを表示する' do
+      it '無効な値の時は再度ページを表示し、エラーメッセージも追加する' do
         post login_path, params: {
           session: {
             employee_id: '',
