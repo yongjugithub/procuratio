@@ -46,3 +46,7 @@ Metrics/EmptyExampleGroup:
 
 Metrics/MultipleExpectations:
   Enabled: false
+
+#コメントにASCII文字を使って良い
+AsciiComments:
+  Enabled: false
