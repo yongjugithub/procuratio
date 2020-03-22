@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_with(url: login_path, local:true) do |f| %>
+  <%= form_for(:session, url: login_path) do |f| %>
   <div class="form-group">
     <%= f.label :employee_id, '従業員コード' %>
     <%= f.number_field :employee_id, class: 'form-control' %>
