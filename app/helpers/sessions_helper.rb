@@ -10,7 +10,7 @@ module SessionsHelper
       @current_employee ||= Employee.find_by(id: session[:employee_id])
     end
   end
-  
+
   # ログインいているユーザーがいればtrue,いなければnilを返す
   def logged_in?
     !current_employee.nil?

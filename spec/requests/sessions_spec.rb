@@ -21,6 +21,7 @@ RSpec.describe 'Sessions', type: :request do
         render_template employee_path(employee.id)
       end
     end
+
     context 'when 異常系' do
       it 'loginページにアクセスできる' do
         get login_path

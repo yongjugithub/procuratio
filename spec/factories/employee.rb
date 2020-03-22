@@ -3,6 +3,6 @@ FactoryBot.define do
     employee_id { 1 }
     name { 'test user' }
     password { 'password' }
-    password_confirmation { 'pasword' }
+    password_confirmation { 'password' }
   end
 end

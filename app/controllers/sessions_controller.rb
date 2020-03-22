@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     employee = Employee.find_by(employee_id: params[:session][:employee_id])
-    if employee && employee.authenticate(params[:session][:password])
+    if employee&.authenticate(params[:session][:password])
       log_in employee
       redirect_to employee
     else
