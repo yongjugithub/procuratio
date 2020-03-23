@@ -1,3 +1,17 @@
-  <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="/employees">Procuratio</a>
-  </nav>
+<div class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="/employees">Procuratio</a>
+  <div claas= "navbar-right">
+    <ul class="navbar-nav">
+      <% if logged_in? %>
+      <li class="nav-item">
+        <%= link_to "ユーザー設定", current_employee %>
+        <%= link_to "ログアウト", logout_path, method: :delete %>
+      </li>
+      <% else %>
+      <li class="nav-item">
+        <%= link_to "ログイン", login_path %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

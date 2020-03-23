@@ -12,7 +12,7 @@ RSpec.describe 'Employees', type: :request do
         expect do
           post employees_url, params: {
             employee: {
-              employee_id: 3,
+              employee_id: 1,
               name: 'test user',
               password: 'password',
               password_confirmation: 'password'
@@ -20,6 +20,8 @@ RSpec.describe 'Employees', type: :request do
           }
         end.to change(Employee, :count).by(1)
         expect(response.status).to eq 302
+        # TestHelperを呼び出し、ログインしていたらtrueを返す
+        expect(is_logged_in?).to be_truthy
       end
     end
 
