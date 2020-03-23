@@ -29,17 +29,18 @@ attendances
 
 # Note
 ユーザー登録
+employee_idに一意性
+初期状態として設定されたユーザー
+id:1のadmin user(admin:true,password:"admin",password_confirmation:"admin")
+id:2のgeneral user(password:"password",password_confirmation:"password")
+
+認証(authentication)
 employee_idとpasword
 による認証方法。
-employee_idに一意性を確保する
 
-アクセス権限
-入力者（通常職員）は変化するため、管理者権限を付与、剥奪可能にする必要がある。
-従業員モデルが管理者権限をもつことにする（admin属性）
-
-認可モデル
-管理者ユーザー(admin_employee)のみが他の従業員の
-[new,show,edit,destroy]が認可される
+認可 (authorization)
+他の従業員の[new,show,edit,destroy]ページへは管理者ユーザー(admin_employee)のみ
+アクセス可能にする
 
 従業員のポイントを入力する画面が存在する（カメラチェック)
 評価項目は１０個（項目名、数は変更の可能性あり）
