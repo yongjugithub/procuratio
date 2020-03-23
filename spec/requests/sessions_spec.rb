@@ -10,7 +10,7 @@ RSpec.describe 'Sessions', type: :request do
         expect(response).to have_http_status(:success)
       end
 
-      it 'ログインする、ログインユーザーのページへ偏移する' do
+      it '有効なユーザーでログインし、ページを偏移する、その後ログアウトする' do
         post login_path, params: {
           session: {
             employee_id: employee.id,
@@ -19,6 +19,11 @@ RSpec.describe 'Sessions', type: :request do
         }
         expect(response).to have_http_status(:success)
         render_template employee_path(employee.id)
+        delete logout_path
+        # TestHelperを呼び出し、ログアウトしていればfalseを返す
+        expect(is_logged_in?).to be_falsey
+        expect(response.status).to eq 302
+        render_template new_employee_path
       end
     end
 

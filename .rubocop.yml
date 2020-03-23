@@ -19,9 +19,23 @@ AllCops:
     - app/controllers/application_controller.rb
     - app/helpers/application_helper.rb
     - spec/spec_helper.rb
+    # rails tutorialのコードを参考にしているため
+    - spec/rails_helper.rb
+    - app/helpers/sessions_helper.rb
 
 Rails:
   Enabled: true
+
+# 新しいオプション(20200323)
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+# ここまで
 
 Style/FrozenStringLiteralComment:
   Enabled: false
