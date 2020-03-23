@@ -14,6 +14,7 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)
     if @employee.save
+      log_in @employee
       flash[:success] = 'ユーザー登録が完了しました'
       redirect_to @employee
     else
