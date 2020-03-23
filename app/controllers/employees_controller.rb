@@ -26,6 +26,15 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
   end
 
+  def update
+    @employee = Employee.find(params[:id])
+    if @employee.update(employee_params)
+
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def employee_params

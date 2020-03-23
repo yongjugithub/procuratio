@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Employees', type: :request do
-  describe 'ユーザー登録 APIテスト' do
-    context 'when 正常系' do
+  let(:employee) { create(:employee, id: 1) }
+
+  describe 'Employeeモデル APIテスト' do
+    context 'when 正常系 ユーザー登録' do
       it '新規登録ページにアクセスできる' do
         get new_employee_path
         expect(response).to have_http_status(:success)
@@ -25,7 +27,29 @@ RSpec.describe 'Employees', type: :request do
       end
     end
 
-    xcontext '異常系' do
+    xcontext '異常系 ユーザー登録' do
+    end
+
+    context 'when 異常系 ユーザー情報編集' do
+      it '編集ページにアクセスできる' do
+        get edit_employee_path(employee.id)
+        expect(response).to have_http_status(:success)
+      end
+
+      it '無効な属性値の場合、編集が失敗しリダイレクトされる' do
+        get edit_employee_path(employee.id)
+        patch employee_path, params: {
+          employee: {
+            employee_id: '',
+            name: '',
+            password: '',
+            password_confirmation: ''
+          }
+        }
+        expect(response.status).to eq 200
+        render_template edit_employee_path
+        expect(response.body).to include 'error'
+      end
     end
   end
 end
