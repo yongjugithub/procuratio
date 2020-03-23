@@ -42,7 +42,7 @@ RSpec.describe 'Sessions', type: :request do
         }
         expect(response.status).to eq 200
         render_template login_path
-        expect(response.body).to include '無効'
+        expect(response.body).to include '従業員コード・パスワードが正しくないか登録されていません'
       end
     end
   end
