@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       log_in employee
       redirect_to employee
     else
-      flash.now[:danger] = '従業員コードとパスワードのどちらか、または両方が無効です'
+      flash.now[:danger] = '従業員コード・パスワードが正しくないか登録されていません'
       render 'new'
     end
   end
