@@ -51,5 +51,26 @@ RSpec.describe 'Employees', type: :request do
         expect(response.body).to include 'error'
       end
     end
+
+    context 'when 正常系 ユーザー情報編集' do
+      it '編集ページにアクセスできる' do
+        get edit_employee_path(employee.id)
+        expect(response).to have_http_status(:success)
+      end
+
+      it '有効な属性値の場合、リダイレクトされ成功メッセージを出す' do
+        get edit_employee_path(employee.id)
+        patch employee_path, params: {
+          employee: {
+            employee_id: '1',
+            name: 'admin user',
+            password: '',
+            password_confirmation: ''
+          }
+        }
+        expect(response.status).to eq 302
+        render_template employees_path(employee.id)
+      end
+    end
   end
 end

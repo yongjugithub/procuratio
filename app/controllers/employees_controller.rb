@@ -29,7 +29,8 @@ class EmployeesController < ApplicationController
   def update
     @employee = Employee.find(params[:id])
     if @employee.update(employee_params)
-
+      flash[:success] = '編集に成功しました'
+      redirect_to @employee
     else
       render 'edit'
     end
