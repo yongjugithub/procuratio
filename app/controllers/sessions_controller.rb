@@ -14,6 +14,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    redirect_to new_employee_path
+    redirect_to employees_path
   end
 end

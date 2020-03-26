@@ -4,6 +4,7 @@
     <ul class="navbar-nav">
       <% if logged_in? %>
       <li class="nav-item">
+        <%= link_to "編集", edit_employee_path %>
         <%= link_to "ログアウト", logout_path, method: :delete %>
       </li>
       <% else %>

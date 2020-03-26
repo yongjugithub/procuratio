@@ -23,7 +23,7 @@ RSpec.describe 'Sessions', type: :request do
         # TestHelperを呼び出し、ログアウトしていればfalseを返す
         expect(is_logged_in?).to be_falsey
         expect(response.status).to eq 302
-        render_template new_employee_path
+        render_template employees_path
       end
     end
 
