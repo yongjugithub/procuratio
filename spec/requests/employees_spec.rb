@@ -27,7 +27,22 @@ RSpec.describe 'Employees', type: :request do
       end
     end
 
-    xcontext '異常系 ユーザー登録' do
+    context 'when 異常系 ユーザー登録' do
+      it '無効な属性値の場合ユーザが登録され,リダイレクトされる' do
+        expect do
+          post employees_url, params: {
+            employee: {
+              employee_id: '',
+              name: '',
+              password: '',
+              password_confirmation: ''
+            }
+          }
+        end.to change(Employee, :count).by(0)
+        expect(response.status).to eq 200
+        # TestHelperを呼び出し、ログイン失敗でfalseを返す
+        expect(is_logged_in?).to be_falsey
+      end
     end
 
     context 'when 異常系 ユーザー情報編集' do
