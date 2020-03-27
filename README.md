@@ -34,6 +34,10 @@ employee_idに一意性
 id:1のadmin user(admin:true,password:"admin",password_confirmation:"admin")
 id:2のgeneral user(password:"password",password_confirmation:"password")
 
+Rspec(featureテスト)
+employee_id:1,名前:admin,password:'admin'
+employee_id:2,名前:test user,password:'password'
+
 認証(authentication)
 employee_idとpasword
 による認証方法。

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Employees', type: :feature do
-  let(:employee) { create(:employee) }
+  let(:employee) { create(:employee, id: 1, password: 'admin', password_confirmation: 'admin') }
 
   it '共通ヘッダーのリンクからトップページに移動できる' do
     visit '/employees/new'
@@ -14,7 +14,7 @@ RSpec.describe 'Employees', type: :feature do
     visit '/employees/new'
 
     expect do
-      fill_in 'employee_employee_id', with: '1'
+      fill_in 'employee_employee_id', with: '2'
       fill_in 'employee_name', with: 'test user'
       fill_in 'employee_password', with: 'password'
       fill_in 'employee_password_confirmation', with: 'password'
