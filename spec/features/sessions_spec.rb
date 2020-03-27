@@ -3,13 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Sessions', type: :feature do
   let!(:employee) { create(:employee, id: 1, password: 'admin', password_confirmation: 'admin') }
 
-  it 'ログイン画面　UIテスト' do
-    visit '/employees'
-    expect(page).to have_link 'ログイン'
-    click_on 'ログイン'
-    expect(page).to have_current_path('/login')
-  end
-
   it 'ログイン失敗時　UIテスト' do
     visit '/login'
     fill_in 'session_employee_id', with: ''
@@ -29,6 +22,6 @@ RSpec.describe 'Sessions', type: :feature do
     expect(page).to have_link '編集'
     expect(page).to have_link 'ログアウト'
     click_on 'ログアウト'
-    expect(page).to have_current_path('/employees')
+    expect(page).to have_current_path('/login')
   end
 end

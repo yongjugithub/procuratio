@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :logged_in_employee, only: %i[edit update]
+  before_action :logged_in_employee, only: %i[index edit update]
 
   def index
     @employees = Employee.all

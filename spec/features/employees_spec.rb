@@ -3,13 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Employees', type: :feature do
   let(:employee) { create(:employee, id: 1, password: 'admin', password_confirmation: 'admin') }
 
-  it '共通ヘッダーのリンクからトップページに移動できる' do
-    visit '/employees/new'
-    expect(page).to have_link 'Procuratio'
-    click_on 'Procuratio'
-    expect(page).to have_current_path('/employees')
-  end
-
   it 'ユーザ登録 UIテスト' do
     visit '/employees/new'
 
@@ -23,8 +16,15 @@ RSpec.describe 'Employees', type: :feature do
     end.to change(Employee, :count).by(1)
   end
 
+  it '未ログイン時　index UIテスト' do
+    visit '/employees'
+    expect(page).to have_current_path('/login')
+    expect(page).to have_content 'ログインが必要です'
+  end
+
   it '未ログイン時 ユーザー情報編集 UIテスト' do
     visit edit_employee_path(employee.id)
+    expect(page).to have_current_path('/login')
     expect(page).to have_content 'ログインが必要です'
   end
 end
