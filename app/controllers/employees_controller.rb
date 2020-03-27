@@ -1,4 +1,6 @@
 class EmployeesController < ApplicationController
+  before_action :logged_in_employee, only: [:edit, :update]
+
   def index
     @employees = Employee.all
   end
@@ -40,5 +42,13 @@ class EmployeesController < ApplicationController
 
   def employee_params
     params.require(:employee).permit(:employee_id, :name, :password, :password_confirmation)
+  end
+
+  #ログインしているか確認
+  def logged_in_employee
+    unless logged_in?
+      flash[:danger] = "ログインが必要です"
+      redirect_to login_url
+    end
   end
 end

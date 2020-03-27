@@ -47,11 +47,13 @@ RSpec.describe 'Employees', type: :request do
 
     context 'when 異常系 ユーザー情報編集' do
       it '編集ページにアクセスできる' do
+        log_in_as(employee)
         get edit_employee_path(employee.id)
         expect(response).to have_http_status(:success)
       end
 
       it '無効な属性値の場合、編集が失敗しリダイレクトされる' do
+        log_in_as(employee)
         get edit_employee_path(employee.id)
         patch employee_path, params: {
           employee: {
@@ -69,11 +71,13 @@ RSpec.describe 'Employees', type: :request do
 
     context 'when 正常系 ユーザー情報編集' do
       it '編集ページにアクセスできる' do
+        log_in_as(employee)
         get edit_employee_path(employee.id)
         expect(response).to have_http_status(:success)
       end
 
       it '有効な属性値の場合、リダイレクトされ成功メッセージを出す' do
+        log_in_as(employee)
         get edit_employee_path(employee.id)
         patch employee_path, params: {
           employee: {
