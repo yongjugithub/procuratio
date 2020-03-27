@@ -1,6 +1,14 @@
 <nav aria-label="breadcrumb">
+  <% if logged_in? %>
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">ログイン中のユーザー</li>
+    <li class="breadcrumb-item">ログインユーザー</li>
+    <li class="breadcrumb-item">ID:<%= @current_employee.id %></li>
+    <li class="breadcrumb-item">名前:<%= @current_employee.name %></li>
+    <li class="breadcrumb-item active" aria-current="page">管理者属性:<%= @current_employee.admin? %></li>
+  </ol>
+  <% end %>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">ユーザー</li>
     <li class="breadcrumb-item">ID:<%= @employee.id %></li>
     <li class="breadcrumb-item">名前:<%= @employee.name %></li>
     <li class="breadcrumb-item active" aria-current="page">管理者属性:<%= @employee.admin? %></li>
