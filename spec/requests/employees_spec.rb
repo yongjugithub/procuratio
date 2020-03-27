@@ -5,12 +5,9 @@ RSpec.describe 'Employees', type: :request do
 
   describe 'Employeeモデル APIテスト' do
     context 'when 正常系 ユーザー登録' do
-      it '新規登録ページにアクセスできる' do
+      it '有効な属性値の場合ユーザが登録され,リダイレクトされる' do
         get new_employee_path
         expect(response).to have_http_status(:success)
-      end
-
-      it '有効な属性値の場合ユーザが登録され,リダイレクトされる' do
         expect do
           post employees_url, params: {
             employee: {
@@ -28,7 +25,7 @@ RSpec.describe 'Employees', type: :request do
     end
 
     context 'when 異常系 ユーザー登録' do
-      it '無効な属性値の場合ユーザが登録され,リダイレクトされる' do
+      it '無効な属性値の場合ユーザが登録されず,リダイレクトされる' do
         expect do
           post employees_url, params: {
             employee: {
@@ -45,13 +42,25 @@ RSpec.describe 'Employees', type: :request do
       end
     end
 
-    context 'when 異常系 ユーザー情報編集' do
-      it '編集ページにアクセスできる' do
+    context 'when 正常系 ユーザー情報編集' do
+      it '有効な属性値の場合、リダイレクトされ成功メッセージを出す' do
         log_in_as(employee)
         get edit_employee_path(employee.id)
         expect(response).to have_http_status(:success)
+        patch employee_path, params: {
+          employee: {
+            employee_id: '1',
+            name: 'admin user',
+            password: '',
+            password_confirmation: ''
+          }
+        }
+        expect(response.status).to eq 302
+        render_template employees_path(employee.id)
       end
+    end
 
+    context 'when 異常系 ユーザー情報編集' do
       it '無効な属性値の場合、編集が失敗しリダイレクトされる' do
         log_in_as(employee)
         get edit_employee_path(employee.id)
@@ -66,29 +75,6 @@ RSpec.describe 'Employees', type: :request do
         expect(response.status).to eq 200
         render_template edit_employee_path
         expect(response.body).to include 'error'
-      end
-    end
-
-    context 'when 正常系 ユーザー情報編集' do
-      it '編集ページにアクセスできる' do
-        log_in_as(employee)
-        get edit_employee_path(employee.id)
-        expect(response).to have_http_status(:success)
-      end
-
-      it '有効な属性値の場合、リダイレクトされ成功メッセージを出す' do
-        log_in_as(employee)
-        get edit_employee_path(employee.id)
-        patch employee_path, params: {
-          employee: {
-            employee_id: '1',
-            name: 'admin user',
-            password: '',
-            password_confirmation: ''
-          }
-        }
-        expect(response.status).to eq 302
-        render_template employees_path(employee.id)
       end
     end
   end

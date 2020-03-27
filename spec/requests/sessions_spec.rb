@@ -5,12 +5,9 @@ RSpec.describe 'Sessions', type: :request do
     let(:employee) { create(:employee) }
 
     context 'when 正常系' do
-      it 'loginページにアクセスできる' do
+      it '有効なユーザーでログインし、ページを偏移する、その後ログアウトする' do
         get login_path
         expect(response).to have_http_status(:success)
-      end
-
-      it '有効なユーザーでログインし、ページを偏移する、その後ログアウトする' do
         post login_path, params: {
           session: {
             employee_id: employee.id,
@@ -28,11 +25,6 @@ RSpec.describe 'Sessions', type: :request do
     end
 
     context 'when 異常系' do
-      it 'loginページにアクセスできる' do
-        get login_path
-        expect(response).to have_http_status(:success)
-      end
-
       it '再度ログインページを表示し、エラーメッセージも追加する' do
         post login_path, params: {
           session: {
