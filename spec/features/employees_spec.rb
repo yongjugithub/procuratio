@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Employees', type: :feature do
+  let(:employee) { create(:employee) }
+
   it '共通ヘッダーのリンクからトップページに移動できる' do
     visit '/employees/new'
     expect(page).to have_link 'Procuratio'
@@ -19,5 +21,10 @@ RSpec.describe 'Employees', type: :feature do
       click_button '新規登録'
       expect(page).to have_content '登録'
     end.to change(Employee, :count).by(1)
+  end
+
+  it '未ログイン時 ユーザー情報編集 UIテスト' do
+    visit edit_employee_path(employee.id)
+    expect(page).to have_content 'ログインが必要です'
   end
 end

@@ -4,7 +4,7 @@ RSpec.describe 'Employees', type: :request do
   let(:employee) { create(:employee, id: 1) }
 
   describe 'Employeeモデル APIテスト' do
-    context 'when 正常系 ユーザー登録' do
+    context 'when ユーザー登録' do
       it '有効な属性値の場合ユーザが登録され,リダイレクトされる' do
         get new_employee_path
         expect(response).to have_http_status(:success)
@@ -24,7 +24,7 @@ RSpec.describe 'Employees', type: :request do
       end
     end
 
-    context 'when 異常系 ユーザー登録' do
+    context 'when ユーザー登録' do
       it '無効な属性値の場合ユーザが登録されず,リダイレクトされる' do
         expect do
           post employees_url, params: {
@@ -42,7 +42,7 @@ RSpec.describe 'Employees', type: :request do
       end
     end
 
-    context 'when 正常系 ユーザー情報編集' do
+    context 'when ログイン時 ユーザー情報編集' do
       it '有効な属性値の場合、リダイレクトされ成功メッセージを出す' do
         log_in_as(employee)
         get edit_employee_path(employee.id)
@@ -60,7 +60,7 @@ RSpec.describe 'Employees', type: :request do
       end
     end
 
-    context 'when 異常系 ユーザー情報編集' do
+    context 'when ログイン時　ユーザー情報編集' do
       it '無効な属性値の場合、編集が失敗しリダイレクトされる' do
         log_in_as(employee)
         get edit_employee_path(employee.id)
@@ -75,6 +75,25 @@ RSpec.describe 'Employees', type: :request do
         expect(response.status).to eq 200
         render_template edit_employee_path
         expect(response.body).to include 'error'
+      end
+    end
+
+    context 'when 未ログイン時 ユーザー情報編集' do
+      it '未ログイン時、ログイン画面にリダイレクトされる' do
+        get edit_employee_path(employee.id)
+        render_template login_path
+      end
+      it '未ログイン時 PATCHリクエストが拒否される' do
+        get edit_employee_path(employee.id)
+        patch employee_url, params: {
+          employee: {
+            employee_id: 1,
+            name: 'test user',
+            password: 'password',
+            password_confirmation: 'password'
+          }
+        }
+        render_template login_path
       end
     end
   end
