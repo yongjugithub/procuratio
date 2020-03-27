@@ -1,8 +1,9 @@
 class EmployeesController < ApplicationController
   before_action :logged_in_employee, only: %i[index edit update]
-
+  MAX_EMPLOYEE = 20
+  
   def index
-    @employees = Employee.all
+    @employees = Employee.page(params[:page]).per(MAX_EMPLOYEE)
   end
 
   def show
