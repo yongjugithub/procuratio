@@ -8,6 +8,7 @@
         <%= "/ 名前: #{current_employee.name} /" %>
         <%= link_to "プロフィール", current_employee %>
         <%= link_to "編集", edit_employee_path(current_employee) %>
+        <%= link_to "ユーザー一覧", employees_path %>
         <%= link_to "ログアウト", logout_path, method: :delete %>
       </li>
       <% else %>
