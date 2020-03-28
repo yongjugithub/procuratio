@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Employees', type: :feature do
   # featureSpecではlog_in_asヘルパーメソッドが作動しない
-
   let(:employee) { create(:employee, id: 1, password: 'admin', password_confirmation: 'admin') }
 
   it 'ユーザ登録成功　ログイン状態 UIテスト' do

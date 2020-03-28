@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Employees', type: :request do
-  let(:employee) { create(:employee, id: 1) }
+  let(:admin_employee) { create(:employee, id: 1, admin: true) }
+  let(:non_admin) { create(:employee, id: 2, admin: false) }
 
   describe 'Employeeモデル APIテスト' do
     context 'when ユーザー登録' do
@@ -42,28 +43,28 @@ RSpec.describe 'Employees', type: :request do
       end
     end
 
-    context 'when ログイン時 ユーザー情報編集' do
-      it '有効な属性値の場合、リダイレクトされ成功メッセージを出す' do
-        log_in_as(employee)
-        get edit_employee_path(employee.id)
+    context 'when ログイン' do
+      it '有効な属性値の場合、編集が成功する' do
+        log_in_as(admin_employee)
+        get edit_employee_path(admin_employee.id)
         expect(response).to have_http_status(:success)
         patch employee_path, params: {
           employee: {
             employee_id: '1',
-            name: 'admin user',
+            name: 'admin',
             password: '',
             password_confirmation: ''
           }
         }
         expect(response.status).to eq 302
-        render_template employees_path(employee.id)
+        render_template employees_path(admin_employee.id)
       end
     end
 
-    context 'when ログイン時　ユーザー情報編集' do
-      it '無効な属性値の場合、編集が失敗しリダイレクトされる' do
-        log_in_as(employee)
-        get edit_employee_path(employee.id)
+    context 'when ログイン' do
+      it '無効な属性値の場合、編集が失敗する' do
+        log_in_as(admin_employee)
+        get edit_employee_path(admin_employee.id)
         patch employee_path, params: {
           employee: {
             employee_id: '',
@@ -78,13 +79,13 @@ RSpec.describe 'Employees', type: :request do
       end
     end
 
-    context 'when 未ログイン時 ユーザー情報編集' do
-      it '未ログイン時、ログイン画面にリダイレクトされる' do
-        get edit_employee_path(employee.id)
+    context 'when 未ログイン' do
+      it 'ユーザー情報編集へアクセス時、ログイン画面にリダイレクトされる' do
+        get edit_employee_path(admin_employee.id)
         render_template login_path
       end
-      it '未ログイン時 PATCHリクエストが拒否される' do
-        get edit_employee_path(employee.id)
+      it 'PATCHリクエストが拒否される' do
+        get edit_employee_path(admin_employee.id)
         patch employee_url, params: {
           employee: {
             employee_id: 1,
@@ -94,6 +95,22 @@ RSpec.describe 'Employees', type: :request do
           }
         }
         render_template login_path
+      end
+    end
+
+    context 'when 管理者権限の制御' do
+      it '一般ユーザーがログイン時は、他のユーザを削除できない' do
+        log_in_as(non_admin)
+        expect do
+          delete employee_url(1)
+        end.to change(Employee, :count).by(0)
+        render_template login_path
+      end
+
+      xit '管理者ユーザーがログイン時は、他のユーザを削除できる' do
+        log_in_as(admin_employee)
+        delete employee_path(non_admin)
+        render_template employees_path
       end
     end
   end
