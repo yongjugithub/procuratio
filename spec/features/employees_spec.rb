@@ -18,6 +18,7 @@ RSpec.describe 'Employees', type: :feature do
     end.to change(Employee, :count).by(1)
 
     # ログイン状態の各リンクにアクセスし、before_actionの機能が有効か確認
+    # paginationのテストを追加すること
     visit '/employees'
     expect(page).to have_current_path('/employees')
     expect(page).to have_content 'ユーザー一覧'
