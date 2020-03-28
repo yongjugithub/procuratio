@@ -1,7 +1,7 @@
 <div class="container">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item active" aria-current="page">新規登録</li>
+      <li class="breadcrumb-item active" aria-current="page">編集画面</li>
     </ol>
   </nav>
   <%= form_with(model: @employee, local: true) do |f| %>
@@ -22,6 +22,6 @@
     <%= f.label :password_confirmation, 'パスワードの確認' %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
-    <%= f.submit '新規登録', class: 'btn btn-primary' %>
+    <%= f.submit '編集完了', class: 'btn btn-primary' %>
   <% end %>
 </div>

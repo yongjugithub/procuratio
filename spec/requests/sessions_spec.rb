@@ -5,12 +5,9 @@ RSpec.describe 'Sessions', type: :request do
     let(:employee) { create(:employee) }
 
     context 'when 正常系' do
-      it 'loginページにアクセスできる' do
+      it '有効なユーザーでログインし、ページを偏移する、その後ログアウトする' do
         get login_path
         expect(response).to have_http_status(:success)
-      end
-
-      it '有効なユーザーでログインし、ページを偏移する、その後ログアウトする' do
         post login_path, params: {
           session: {
             employee_id: employee.id,
@@ -23,16 +20,11 @@ RSpec.describe 'Sessions', type: :request do
         # TestHelperを呼び出し、ログアウトしていればfalseを返す
         expect(is_logged_in?).to be_falsey
         expect(response.status).to eq 302
-        render_template new_employee_path
+        render_template employees_path
       end
     end
 
     context 'when 異常系' do
-      it 'loginページにアクセスできる' do
-        get login_path
-        expect(response).to have_http_status(:success)
-      end
-
       it '再度ログインページを表示し、エラーメッセージも追加する' do
         post login_path, params: {
           session: {
@@ -42,7 +34,7 @@ RSpec.describe 'Sessions', type: :request do
         }
         expect(response.status).to eq 200
         render_template login_path
-        expect(response.body).to include '無効'
+        expect(response.body).to include '従業員コード・パスワードが正しくないか登録されていません'
       end
     end
   end

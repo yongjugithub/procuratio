@@ -1,1 +1,8 @@
-<%= @employee.name %>, <%= @employee.employee_id %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">ユーザー</li>
+    <li class="breadcrumb-item">ID: <%= @employee.id %></li>
+    <li class="breadcrumb-item">名前: <%= @employee.name %></li>
+    <li class="breadcrumb-item active" aria-current="page">管理者属性:<%= @employee.admin? %></li>
+  </ol>
+</nav>

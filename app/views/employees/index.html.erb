@@ -1,3 +1,8 @@
 <div class="container">
-  <h1>index</h1>
+  <h3>ユーザー一覧</h3>
+  <%= paginate @employees %>
+    <ul class="list-group">
+      <%= render @employees %>
+    </ul>
+  <%= paginate @employees %>
 </div>

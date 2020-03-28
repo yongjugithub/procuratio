@@ -50,6 +50,10 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
 
+#let!の使用を許可する
+RSpec/LetSetup:
+  Enabled: false
+
 #テストの行が5行以上になっても良い
 Metrics/ExampleLength:
   Enabled: false
