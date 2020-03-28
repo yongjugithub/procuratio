@@ -16,25 +16,18 @@ RSpec.describe 'Employees', type: :feature do
     end.to change(Employee, :count).by(1)
   end
 
-  xit 'ログイン時　index UIテスト' do
+  xit 'ログイン時 アクセス制限テスト' do
     log_in_as(employee)
     visit '/employees'
     expect(page).to have_current_path('/employees')
-  end
-
-  it '未ログイン時　index UIテスト' do
-    visit '/employees'
-    expect(page).to have_current_path('/login')
-    expect(page).to have_content 'ログインが必要です'
-  end
-
-  xit 'ログイン時 ユーザー情報編集 UIテスト' do
-    log_in_as(employee)
     visit edit_employee_path(employee.id)
     expect(page).to have_current_path('/edit_employee_path')
   end
 
-  it '未ログイン時 ユーザー情報編集 UIテスト' do
+  it '未ログイン時  アクセス制限テスト' do
+    visit '/employees'
+    expect(page).to have_current_path('/login')
+    expect(page).to have_content 'ログインが必要です'
     visit edit_employee_path(employee.id)
     expect(page).to have_current_path('/login')
     expect(page).to have_content 'ログインが必要です'
