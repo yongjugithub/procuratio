@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Employees', type: :feature do
+  # featureSpecではlog_in_asヘルパーメソッドが作動しない
+
   let(:employee) { create(:employee, id: 1, password: 'admin', password_confirmation: 'admin') }
 
-  it 'ユーザ登録 UIテスト' do
+  it 'ユーザ登録成功　ログイン状態 UIテスト' do
     visit '/employees/new'
 
     expect do
@@ -14,14 +16,14 @@ RSpec.describe 'Employees', type: :feature do
       click_button '新規登録'
       expect(page).to have_content '登録'
     end.to change(Employee, :count).by(1)
-  end
 
-  xit 'ログイン時 アクセス制限テスト' do
-    log_in_as(employee)
+    # ログイン状態の各リンクにアクセスし、before_actionの機能が有効か確認
     visit '/employees'
     expect(page).to have_current_path('/employees')
+    expect(page).to have_content 'ユーザー一覧'
     visit edit_employee_path(employee.id)
-    expect(page).to have_current_path('/edit_employee_path')
+    expect(page).to have_current_path('/employees/1/edit')
+    expect(page).to have_content '編集画面'
   end
 
   it '未ログイン時  アクセス制限テスト' do
