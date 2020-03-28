@@ -2,9 +2,7 @@
   <h3>ユーザー一覧</h3>
   <%= paginate @employees %>
     <ul class="list-group">
-      <% @employees.each do |employee| %>
-        <li class="list-group-item"><%= link_to "#{employee.name}", employee_path(employee.id) %></li>
-      <% end %>
+      <%= render @employees %>
     </ul>
   <%= paginate @employees %>
 </div>
