@@ -9,17 +9,17 @@
 - Rails 6系
 - タイムゾーンは日本時間
 - AWSで運用予定のため、datebaseは全ての開発環境でmysqlを採用する
-- テストはRspec
-- デザインはbootstrap
+- テストフレームワーク:Rspec
+- デザインフレームワーク:bootstrap
 
 # 開発方針
 - gitの開発ブランチで開発をおこなう
-- git diff --stat, add&commit 時にはrubocop,rspecが常にgreenな状態に戻れるようにする
+- git diff --stat, add&commit 時にはrubocop,rspecが常にgreenかyelloの状態に戻れるようにする
 - 開発ブランチからmasterブランチへPRををだすことで目視でも確認する
 
 # DB設計
 employee [employee_id,name,admin,password_digest]
-attendance [employee_id,もろもろの評価項目,point]
+attendance [employee_id,評価項目12ほど,point]
 
 Association(モデルの関連)
 employee
@@ -34,15 +34,17 @@ employee_idに一意性
 id:1のadmin user(admin:true,password:"admin",password_confirmation:"admin")
 
 認証(authentication)
+ログイン
 employee_idとpasword
 による認証方法。
 
 認可 (authorization)
-他の従業員の[new,show,edit,destroy]ページへは管理者ユーザー(admin_employee)のみ
-アクセス可能にする
+管理者権限、管理者ユーザーと一般ユーザーの存在
+管理者ユーザー(admin_employee)が他のユーザーのページにアクセス可能にする
 
-従業員のポイントを入力する画面が存在する（カメラチェック)
-評価項目は１０個（項目名、数は変更の可能性あり）
+勤怠テーブル
+入力はカメラチェックの評価を入力する形にする
+評価項目は１０個ほど（項目名、数は変更の可能性あり）
 
 # Author
 Ji Yongju
