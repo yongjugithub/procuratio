@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Employee.create(
+  employee_id: 1,
+  name: "admin user",
+  password: "admin",
+  password_confirmation: "admin",
+  admin: true
+)
+21.times do |n|
+  Employee.create(
+    employee_id: n + 1,
+    name: "sample employee#{n + 1}",
+    password: "password",
+    password_confirmation: "password"
+  )
+end
