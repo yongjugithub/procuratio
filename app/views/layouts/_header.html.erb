@@ -5,7 +5,8 @@
       <% if logged_in? %>
       <li class="nav-item">
         <%= "ログインユーザー / ID: #{current_employee.id}" %>
-        <%= "/ 名前: #{current_employee.name} /" %>
+        <%= "/ 名前: #{current_employee.name}" %>
+        <%= "/ 管理者権限: #{current_employee.admin?}" %>
         <%= link_to "プロフィール", current_employee %>
         <%= link_to "編集", edit_employee_path(current_employee) %>
         <%= link_to "ユーザー一覧", employees_path %>
