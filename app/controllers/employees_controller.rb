@@ -54,14 +54,6 @@ class EmployeesController < ApplicationController
     params.require(:employee).permit(:employee_id, :name, :password, :password_confirmation)
   end
 
-  # ログインしているか確認
-  def logged_in_employee
-    unless logged_in?
-      flash[:danger] = 'ログインが必要です'
-      redirect_to login_url
-    end
-  end
-
   def admin_employee
     redirect_to(login_url) unless current_employee.admin?
   end
