@@ -9,6 +9,11 @@ RSpec.describe Attendance, type: :model do
       expect(attendance).to be_valid
     end
 
+    it 'Employeeが削除されたら関連しているAttendaceも削除される' do
+      expect(attendance).to be_valid
+      expect { attendance.employee.destroy }.to change(Attendance, :count).by(-1)
+    end
+
     it '乗務員コードがなければ無効' do
       attendance.employee_id = ' '
       expect(attendance).not_to be_valid
