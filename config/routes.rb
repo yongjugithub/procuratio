@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   resources :employees
-  resources :attendances, only:[:create, :destroy]
+  resources :attendances, only:[:new, :create, :destroy]
 end
