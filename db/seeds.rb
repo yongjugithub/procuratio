@@ -21,3 +21,13 @@ Employee.create(
     password_confirmation: "password"
   )
 end
+Attendance.create(
+  employee_id: 2,
+  point: 10
+)
+21.times do |n|
+  Attendance.create(
+    employee_id: 2,
+    point: 10
+  )
+end
