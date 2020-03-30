@@ -49,6 +49,9 @@ Documentation:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    
+RSpec/ContextWording:
+  Enabled: false
 
 #let!の使用を許可する
 RSpec/LetSetup:
