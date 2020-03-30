@@ -53,8 +53,4 @@ class EmployeesController < ApplicationController
   def employee_params
     params.require(:employee).permit(:employee_id, :name, :password, :password_confirmation)
   end
-
-  def admin_employee
-    redirect_to(login_url) unless current_employee.admin?
-  end
 end
