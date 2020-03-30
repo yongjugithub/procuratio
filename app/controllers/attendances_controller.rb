@@ -1,5 +1,6 @@
 class AttendancesController < ApplicationController
   before_action :logged_in_employee, only: %i[new create destroy]
+  before_action :admin_employee, only: %i[new create destroy]
 
   def new
     @attendance = Attendance.new

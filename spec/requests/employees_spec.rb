@@ -12,7 +12,7 @@ RSpec.describe 'Employees', type: :request do
         expect do
           post employees_url, params: {
             employee: {
-              employee_id: 1,
+              employee_id: 3,
               name: 'test user',
               password: 'password',
               password_confirmation: 'password'
@@ -107,9 +107,11 @@ RSpec.describe 'Employees', type: :request do
         render_template login_path
       end
 
-      xit '管理者ユーザーがログイン時は、他のユーザを削除できる' do
+      it '管理者ユーザーがログイン時は、他のユーザを削除できる' do
         log_in_as(admin_employee)
-        delete employee_path(non_admin)
+        expect do
+          delete employee_url(1)
+        end.to change(Employee, :count).by(-1)
         render_template employees_path
       end
     end
