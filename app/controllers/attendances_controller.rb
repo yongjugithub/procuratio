@@ -19,10 +19,9 @@ class AttendancesController < ApplicationController
   private
 
   def attendance_params
-    params.require(:attendance).permit(:employee_id,:ride_at,:ride_in,
-      :attr_one,:attr_two,:attr_three,:attr_four,:attr_five,
-      :attr_six,:attr_seven,:attr_eight,:attr_nine,:attr_ten,
-      :memo,:point
-    )
+    params.require(:attendance).permit(:employee_id, :ride_at, :ride_in,
+                                       :attr_one, :attr_two, :attr_three, :attr_four, :attr_five,
+                                       :attr_six, :attr_seven, :attr_eight, :attr_nine, :attr_ten,
+                                       :memo, :point)
   end
 end
