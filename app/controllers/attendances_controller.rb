@@ -9,6 +9,8 @@ class AttendancesController < ApplicationController
   def create
     @attendance = Attendance.new(attendance_params)
     if @attendance.save
+      flash[:success] = 'モニタリングチェックが完了しました'
+      redirect_to '/employees'
     else
       render 'new'
     end
