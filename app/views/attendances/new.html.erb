@@ -6,10 +6,76 @@
   </nav>
   <%= form_with(model: @attendance, local: true) do |f| %>
   <%= render 'layouts/error_messages', object: f.object %>
-  <div class="form-group">
-    <%= f.label :employee_id, '従業員コード' %>
-    <%= f.number_field :employee_id, class: 'form-control' %>
-  </div>
-    <%= f.submit 'チェック完了', class: 'btn btn-primary' %>
+    <div class="bg-light">
+      <div class="form-group">
+        <%= f.label :employee_id, '従業員コード' %>
+        <%= f.number_field :employee_id, min: '1', class: 'form-control' %>
+      </div>
+      <div class="form-group row">
+        <div class="col">
+          <%= f.label :ride_at, '乗車時間 ' %>
+          <%= f.date_select :ride_at, discard_year:true, use_month_numbers: true, selected: Date.today, date_separator:'/', class: 'form-control' %>
+          <%= f.time_select :ride_at, minute_step: 5, class: 'form-control' %>
+        </div>
+        <div class="col">
+          <%= f.label :ride_in, '経路' %>
+          <%= f.text_field :ride_in, placeholder:'東京駅-大手町', class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :attr_one, '1 [ご乗車ありがとうございます] 元気がない×/ご乗車ありがとうございます以外は全て×/おはようございますのみ×' %>
+        <%= f.check_box :attr_one, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :attr_two, '2 [行き先の復唱、確認があった] はい。など返事だけ/かしこまりましただけは×' %>
+        <%= f.check_box :attr_one, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :attr_three, '3 [発車時の後方目視確認及びスライドドアが確実にしまってから発進した]
+        確認不足で発車していると判断したら×/スライドドアが完全に閉まっていないとと×' %>
+        <%= f.check_box :attr_one, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :attr_four, '4 [申し訳ございませんが新人です。道のご案内をおねがいできますか]又は[コースの確認があった]
+        まっすぐの場合でも、このまままっすぐ行きますなど確認/ コース確認せず進行の場合はNG' %>
+        <%= f.check_box :attr_one, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :attr_five, '5 [行き先復唱かコース確認のどちらで「かしこまりました」の返事が一回以上あった]' %>
+        <%= f.check_box :attr_one, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :attr_six, '6 [申しおくれました、私、日本交通の〇〇でございます][安全運転で参りますが、念のためシートベルトの着用お願いいたします]
+        おおむね１分以内、１つ目の信号手前までに両項目で〇' %>
+        <%= f.check_box :attr_one, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :attr_seven, '7 [会計時ありがとうございます、〇〇で御座います]ありがとうございます＋金額で〇' %>
+        <%= f.check_box :attr_one, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :attr_eight, '8 [適切な運転姿勢であり、正しい服装であった]' %>
+        <%= f.check_box :attr_one, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :attr_nine, '9 [忘れ物注意の声がけとシートベルトを外して足下までの目視による確認]' %>
+        <%= f.check_box :attr_one, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :attr_ten, '10 [今後とも日本交通を宜しくお願いします]' %>
+        <%= f.check_box :attr_one, class: 'form-control' %>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-9">
+          <%= f.label :momo, '備考' %>
+          <%= f.text_area :memo, placeholder: 'お疲れ様でした', class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-3">
+          <%= f.label :point, '点数' %>
+          <%= f.select :point, [0,1,2,3,4,5,6,7,8,9,10], class: 'form-control' %>
+        </div>
+      </div>
+      <%= f.submit 'チェック完了', class: 'btn btn-primary' %>
+    </div>
   <% end %>
 </div>
