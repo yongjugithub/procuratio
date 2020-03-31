@@ -37,6 +37,20 @@ RSpec.describe 'Attendances', type: :feature do
       click_button 'チェック完了'
       expect(page).to have_content 'error'
     end
+
+    it '有効な値のときサクセスメッセージとともに別のページに偏移する' do
+      # let!で事前に作成したadmin_employeeとしてログインする
+      visit '/login'
+      fill_in 'session_employee_id', with: '1'
+      fill_in 'session_password', with: 'admin'
+      click_button 'ログイン'
+
+      visit '/attendances/new'
+      fill_in 'attendance_employee_id', with: non_admin.id
+      fill_in 'attendance_point', with: '9'
+      click_button 'チェック完了'
+      expect(page).to have_content '完了しました'
+    end
   end
 
   context '一般ユーザーとしてログイン' do
