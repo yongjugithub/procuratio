@@ -6,7 +6,23 @@ class AttendancesController < ApplicationController
     @attendance = Attendance.new
   end
 
-  def create; end
+  def create
+    @attendance = Attendance.new(attendance_params)
+    if @attendance.save
+    else
+      render 'new'
+    end
+  end
 
   def destroy; end
+
+  private
+
+  def attendance_params
+    params.require(:attendance).permit(:employee_id,:ride_at,:ride_in,
+      :attr_one,:attr_two,:attr_three,:attr_four,:attr_five,
+      :attr_six,:attr_seven,:attr_eight,:attr_nine,:attr_ten,
+      :memo,:point
+    )
+  end
 end

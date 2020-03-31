@@ -8,7 +8,7 @@
   <%= render 'layouts/error_messages', object: f.object %>
     <div class="bg-light">
       <div class="form-group">
-        <%= f.label :employee_id, '従業員コード' %>
+        <%= f.label :employee_id, '従業員コード(必須)' %>
         <%= f.number_field :employee_id, min: '1', class: 'form-control' %>
       </div>
       <div class="form-group row">
@@ -71,7 +71,7 @@
           <%= f.text_area :memo, placeholder: 'お疲れ様でした', class: 'form-control' %>
         </div>
         <div class="form-group col-md-3">
-          <%= f.label :point, '点数' %>
+          <%= f.label :point, '点数(必須)' %>
           <%= f.select :point, [0,1,2,3,4,5,6,7,8,9,10], class: 'form-control' %>
         </div>
       </div>
