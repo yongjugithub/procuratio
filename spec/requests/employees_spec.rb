@@ -12,7 +12,7 @@ RSpec.describe 'Employees', type: :request do
         expect do
           post employees_url, params: {
             employee: {
-              employee_id: 1,
+              employee_id: 3,
               name: 'test user',
               password: 'password',
               password_confirmation: 'password'
@@ -25,7 +25,7 @@ RSpec.describe 'Employees', type: :request do
       end
     end
 
-    context 'when ユーザー登録' do
+    context 'ユーザー登録' do
       it '無効な属性値の場合ユーザが登録されず,リダイレクトされる' do
         expect do
           post employees_url, params: {
@@ -43,7 +43,7 @@ RSpec.describe 'Employees', type: :request do
       end
     end
 
-    context 'when ログイン' do
+    context 'ログイン' do
       it '有効な属性値の場合、編集が成功する' do
         log_in_as(admin_employee)
         get edit_employee_path(admin_employee.id)
@@ -61,7 +61,7 @@ RSpec.describe 'Employees', type: :request do
       end
     end
 
-    context 'when ログイン' do
+    context 'ログイン' do
       it '無効な属性値の場合、編集が失敗する' do
         log_in_as(admin_employee)
         get edit_employee_path(admin_employee.id)
@@ -79,7 +79,7 @@ RSpec.describe 'Employees', type: :request do
       end
     end
 
-    context 'when 未ログイン' do
+    context '未ログイン' do
       it 'ユーザー情報編集へアクセス時、ログイン画面にリダイレクトされる' do
         get edit_employee_path(admin_employee.id)
         render_template login_path
@@ -98,7 +98,7 @@ RSpec.describe 'Employees', type: :request do
       end
     end
 
-    context 'when 管理者権限の制御' do
+    context '管理者権限の制御' do
       it '一般ユーザーがログイン時は、他のユーザを削除できない' do
         log_in_as(non_admin)
         expect do
@@ -107,9 +107,11 @@ RSpec.describe 'Employees', type: :request do
         render_template login_path
       end
 
-      xit '管理者ユーザーがログイン時は、他のユーザを削除できる' do
+      it '管理者ユーザーがログイン時は、他のユーザを削除できる' do
         log_in_as(admin_employee)
-        delete employee_path(non_admin)
+        expect do
+          delete employee_url(1)
+        end.to change(Employee, :count).by(-1)
         render_template employees_path
       end
     end

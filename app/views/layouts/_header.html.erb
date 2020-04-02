@@ -4,7 +4,7 @@
     <ul class="navbar-nav">
       <% if logged_in? %>
       <li class="nav-item">
-        <%= "ログインユーザー / ID: #{current_employee.id}" %>
+        <%= "ログインユーザー / 乗務員コード: #{current_employee.id}" %>
         <%= "/ 名前: #{current_employee.name}" %>
         <%= "/ 管理者権限: #{current_employee.admin?}" %>
         <%= link_to "プロフィール", current_employee %>

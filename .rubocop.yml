@@ -50,6 +50,10 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
 
+#it ''　内で日本語の使用を許可する
+RSpec/ContextWording:
+  Enabled: false
+
 #let!の使用を許可する
 RSpec/LetSetup:
   Enabled: false

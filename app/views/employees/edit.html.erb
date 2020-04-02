@@ -5,7 +5,7 @@
     </ol>
   </nav>
   <%= form_with(model: @employee, local: true) do |f| %>
-  <%= render 'error_messages', model: @employee %>
+  <%= render 'layouts/error_messages', object: f.object %>
   <div class="form-group">
     <%= f.label :employee_id, '従業員コード' %>
     <%= f.number_field :employee_id, class: 'form-control' %>
