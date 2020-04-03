@@ -5,10 +5,10 @@
 評価結果は勤怠データベースに保存させる
 
 # Requirements
-- ruby '2.6.3'
+- ruby 2.6.3
 - Rails 6系
 - タイムゾーンは日本時間
-- AWSで運用予定のため、datebaseは全ての開発環境でmysqlを採用する
+- Databaseはmysql2
 - テストフレームワーク:Rspec
 - デザインフレームワーク:bootstrap
 
@@ -16,6 +16,7 @@
 - gitの開発ブランチで開発をおこなう
 - git diff --stat, add&commit 時にはrubocop,rspecが常にgreenかyelloの状態に戻れるようにする
 - 開発ブランチからmasterブランチへPRををだすことで目視でも確認する
+- master へ　marge したら本番環境へデプロイ
 
 # DB設計
 employee [employee_id,name,admin,password_digest]
@@ -30,8 +31,8 @@ attendances
 # Note
 ユーザー登録
 employee_idに一意性
-初期状態として設定されたユーザー
-id:1のadmin user(admin:true,password:"admin",password_confirmation:"admin")
+初期ユーザー
+admin user(admin:true,password:"admin",password_confirmation:"admin")
 
 認証(authentication)
 ログイン
