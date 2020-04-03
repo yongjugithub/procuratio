@@ -1,5 +1,9 @@
 <div class="container">
-  <h3>ユーザー一覧</h3>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">ユーザー一覧</li>
+    </ol>
+  </nav>
   <%= paginate @employees %>
     <ul class="list-group">
       <%= render @employees %>
