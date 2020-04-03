@@ -20,8 +20,6 @@ RSpec.describe 'Employees', type: :request do
           }
         end.to change(Employee, :count).by(1)
         expect(response.status).to eq 302
-        # TestHelperを呼び出し、ログインしていたらtrueを返す
-        expect(is_logged_in?).to be_truthy
       end
     end
 
