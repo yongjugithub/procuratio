@@ -6,15 +6,19 @@ RSpec.describe 'Employees', type: :feature do
   let!(:attendances) { create_list(:attendance, 14, employee: admin_employee) }
 
   context '未ログイン時' do
-    it 'employee[index,edit]にアクセス不可' do
+    it '[show]にアクセス不可' do
       visit employee_path(admin_employee.id)
       expect(page).to have_current_path('/login')
       expect(page).to have_content 'ログインが必要です'
+    end
 
+    it '[index]にアクセス不可' do
       visit '/employees'
       expect(page).to have_current_path('/login')
       expect(page).to have_content 'ログインが必要です'
+    end
 
+    it '[edit]にアクセス不可' do
       visit edit_employee_path(admin_employee.id)
       expect(page).to have_current_path('/login')
       expect(page).to have_content 'ログインが必要です'
@@ -22,30 +26,35 @@ RSpec.describe 'Employees', type: :feature do
   end
 
   context '管理者としてログイン' do
-    it 'ログインする' do
+    before do
       visit '/login'
       fill_in 'session_employee_id', with: 1
       fill_in 'session_password', with: 'admin'
       click_button 'ログイン'
-      expect(page).to have_current_path(employee_path(admin_employee.id))
+    end
 
-      # ログイン時は[index,edit,show]にアクセスできる
-      # indexページ
+    it '[index]にアクセスできる' do
       visit '/employees'
       expect(page).to have_current_path(employees_path)
       expect(page).to have_content 'ユーザー一覧'
-      # editページ
+    end
+
+    it '[edit]にアクセスできる' do
       visit edit_employee_path(admin_employee.id)
       expect(page).to have_current_path(edit_employee_path(admin_employee.id))
       expect(page).to have_content '編集画面'
-      # showページ
+    end
+
+    it '[show]にアクセスできる' do
       visit employee_path(admin_employee.id)
       expect(page).to have_current_path(employee_path(admin_employee.id))
       # paginationが機能しているか
       expect(page).to have_selector 'ul.pagination'
       expect(page).to have_selector 'ul.list-group'
       expect(page).to have_selector 'span.timestamp'
+    end
 
+    it '有効な値で一般ユーザーを新規作成できる' do
       visit '/employees/new'
 
       expect do
