@@ -1,0 +1,12 @@
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">モニタリング結果一覧</li>
+    </ol>
+  </nav>
+  <%= paginate @attendances %>
+    <ul class="list-group">
+      <%= render @attendances %>
+    </ul>
+  <%= paginate @attendances %>
+</div>

@@ -1,6 +1,11 @@
 class AttendancesController < ApplicationController
-  before_action :logged_in_employee, only: %i[new create destroy]
-  before_action :admin_employee, only: %i[new create destroy]
+  before_action :logged_in_employee, only: %i[index new create destroy]
+  before_action :admin_employee, only: %i[index new create destroy]
+  MAX_DISPLAY_ATTENDANCE = 10
+
+  def index
+    @attendances = Attendance.order('created_at DESC').page(params[:page]).per(MAX_DISPLAY_ATTENDANCE)
+  end
 
   def new
     @attendance = Attendance.new
@@ -10,7 +15,7 @@ class AttendancesController < ApplicationController
     @attendance = Attendance.new(attendance_params)
     if @attendance.save
       flash[:success] = 'モニタリングチェックが完了しました'
-      redirect_to '/employees'
+      redirect_to '/attendances'
     else
       render 'new'
     end

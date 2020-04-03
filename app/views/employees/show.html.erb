@@ -1,16 +1,18 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">ユーザー</li>
-    <li class="breadcrumb-item">乗務員コード: <%= @employee.employee_id %></li>
-    <li class="breadcrumb-item">名前: <%= @employee.name %></li>
-    <li class="breadcrumb-item active" aria-current="page">管理者属性:<%= @employee.admin? %></li>
-  </ol>
-</nav>
 <div class="container">
-  <% if @employee.attendances.any? %>
-    <%= paginate @attendances %>
-      <ul class="list-group">
-        <%= render @attendances %>
-      </ul>
-  <% end %>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">ユーザー</li>
+      <li class="breadcrumb-item">乗務員コード: <%= @employee.employee_id %></li>
+      <li class="breadcrumb-item">名前: <%= @employee.name %></li>
+      <li class="breadcrumb-item active" aria-current="page">管理者属性:<%= @employee.admin? %></li>
+    </ol>
+  </nav>
+  <div class="container">
+    <% if @employee.attendances.any? %>
+      <%= paginate @attendances %>
+        <ul class="list-group">
+          <%= render @attendances %>
+        </ul>
+    <% end %>
+  </div>
 </div>

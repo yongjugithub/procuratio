@@ -7,9 +7,11 @@
         <%= "ログインユーザー / 乗務員コード: #{current_employee.id}" %>
         <%= "/ 名前: #{current_employee.name}" %>
         <%= "/ 管理者権限: #{current_employee.admin?}" %>
+        <%= link_to "モニタリングチェック", new_attendance_path %>
+        <%= link_to "モニタリング一覧", attendances_path %>
         <%= link_to "プロフィール", current_employee %>
-        <%= link_to "編集", edit_employee_path(current_employee) %>
         <%= link_to "ユーザー一覧", employees_path %>
+        <%= link_to "編集", edit_employee_path(current_employee) %>
         <%= link_to "ログアウト", logout_path, method: :delete %>
       </li>
       <% else %>
