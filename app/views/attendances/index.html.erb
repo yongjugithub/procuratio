@@ -4,8 +4,12 @@
       <li class="breadcrumb-item active" aria-current="page">モニタリング結果一覧</li>
     </ol>
   </nav>
-  <%= paginate @attendances %>
-    <ul class="list-group">
-      <%= render @attendances %>
-    </ul>
+  <div class="container">
+    <% if @attendances.any? %>
+      <%= paginate @attendances %>
+        <ul class="list-group">
+          <%= render @attendances %>
+        </ul>
+    <% end %>
+  </div>
 </div>
