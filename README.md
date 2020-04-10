@@ -1,16 +1,21 @@
 # 勤怠管理システム Procuratio
 # Description
-管理者は従業員の勤怠を管理するアプリ
+既存の紙ベースの業務をwebシステム化するもの
+従業員の勤怠を管理するアプリ
 従業員は勤務毎に勤務状況に対し、0~10の評価ポイントが与えられる。
-評価結果は勤怠データベースに保存させる
 
 # Requirements
 - ruby 2.6.3
 - Rails 6系
-- タイムゾーンは日本時間
-- Databaseはmysql2
+- データベースはmysql2
 - テストフレームワーク:Rspec
 - デザインフレームワーク:bootstrap
+
+# Docker
+- docker環境構築参照url
+- https://docs.docker.com/compose/rails/
+- 開発手順
+- docker-compose up --build #イメージからコンテナをビルドする
 
 # 開発方針
 - gitの開発ブランチで開発をおこなう
@@ -23,10 +28,7 @@ employee [employee_id,name,admin,password_digest]
 attendance [employee_id,評価項目12ほど,point]
 
 Association(モデルの関連)
-employee
-	|
-has_many
-attendances
+employee has_many attendances
 
 # Note
 ユーザー登録
