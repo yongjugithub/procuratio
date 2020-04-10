@@ -32,9 +32,10 @@ config/master.key
 ## Environment normalization:
 /.bundle
 /vendor/bundle
-/vendor/
+/vendor/*
 
 # DBのデータ
+/db
 /db/*
 /mysql/*
 
