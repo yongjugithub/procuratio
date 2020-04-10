@@ -33,10 +33,11 @@ config/master.key
 /.bundle
 /vendor/bundle
 /vendor/*
+vendor/*
 
 # DBのデータ
-/db
-/db/*
+db/*
+/db/
 /mysql/*
 
 # these should all be checked in to normalize the environment:
