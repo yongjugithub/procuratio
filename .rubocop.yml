@@ -2,7 +2,11 @@ require:
   - rubocop-rails
   - rubocop-rspec
 
+Rails:
+  Enabled: true
+
 AllCops:
+  TargetRubyVersion: 2.6
   Exclude:
     - vendor/bundle/**/*
     - bin/*
@@ -22,9 +26,8 @@ AllCops:
     # rails tutorialのコードを参考にしているため
     - spec/rails_helper.rb
     - app/helpers/sessions_helper.rb
-
-Rails:
-  Enabled: true
+    # docker化後追記
+    - 'vendor/**/*'
 
 # 新しいオプション(20200323)
 Style/HashEachMethods:
@@ -37,13 +40,17 @@ Style/HashTransformValues:
   Enabled: true
 # ここまで
 
+#コメントにASCII文字を使って良い
+Style/AsciiComments:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
 Layout/LineLength:
   Enabled: 100
 
-Documentation:
+Style/Documentation:
   Enabled: false
 
 Metrics/BlockLength:
@@ -58,17 +65,14 @@ RSpec/ContextWording:
 RSpec/LetSetup:
   Enabled: false
 
+#テストに複数行で記載してもよい
+RSpec/MultipleExpectations:
+  Enabled: false
+
 #テストの行が5行以上になっても良い
-Metrics/ExampleLength:
+RSpec/ExampleLength:
   Enabled: false
 
 #空のテストがあっても良い
-Metrics/EmptyExampleGroup:
-  Enabled: false
-
-Metrics/MultipleExpectations:
-  Enabled: false
-
-#コメントにASCII文字を使って良い
-AsciiComments:
+RSpec/EmptyExampleGroup:
   Enabled: false

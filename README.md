@@ -15,7 +15,9 @@
 - docker環境構築参照url
 - https://docs.docker.com/compose/rails/
 - 開発手順
-- docker-compose up --build #イメージからコンテナをビルドする
+- docker-compose up --build #イメージからコンテナをビルドすると、以下のコマンドが使用できる
+- docker-compose exec web rspec
+- docker-compose exec web rubocop
 
 # 開発方針
 - gitの開発ブランチで開発をおこなう
