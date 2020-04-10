@@ -51,7 +51,6 @@ RSpec.describe 'Employees', type: :feature do
       # paginationが機能しているか
       expect(page).to have_selector 'ul.pagination'
       expect(page).to have_selector 'ul.list-group'
-      expect(page).to have_selector 'span.timestamp'
     end
 
     it '有効な値で一般ユーザーを新規作成できる' do

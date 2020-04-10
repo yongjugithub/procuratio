@@ -33,6 +33,10 @@ config/master.key
 /.bundle
 /vendor/bundle
 
+# docker化後追記
+/vendor/*
+/mysql/*
+
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
 

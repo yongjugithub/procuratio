@@ -29,11 +29,13 @@ RSpec.describe 'Attendances', type: :feature do
 
     it 'attendances[new] にアクセス可能' do
       visit '/attendances/new'
+      expect(page).to have_no_content 'このページは管理者のみが閲覧できます'
       expect(page).to have_current_path('/attendances/new')
     end
 
     it 'attendances[index] にアクセス可能' do
       visit '/attendances'
+      expect(page).to have_no_content 'このページは管理者のみが閲覧できます'
       expect(page).to have_current_path('/attendances')
     end
 
@@ -65,11 +67,13 @@ RSpec.describe 'Attendances', type: :feature do
 
     it 'attendances/new にアクセス不可' do
       visit '/attendances/new'
+      expect(page).to have_content 'このページは管理者のみが閲覧できます'
       expect(page).to have_current_path('/login')
     end
 
     it 'attendances/index にアクセス不可' do
       visit '/attendances'
+      expect(page).to have_content 'このページは管理者のみが閲覧できます'
       expect(page).to have_current_path('/login')
     end
   end
