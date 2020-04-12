@@ -54,7 +54,7 @@ RSpec.describe 'Attendances', type: :feature do
       fill_in 'attendance_employee_id', with: non_admin.id
       fill_in 'attendance_point', with: '9'
       click_button 'チェック完了'
-      expect(page).to have_content '完了しました'
+      expect(page).to have_content 'チェック結果が保存されました'
       expect(page).to have_current_path('/attendances')
     end
   end

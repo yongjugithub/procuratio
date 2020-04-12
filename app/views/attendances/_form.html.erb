@@ -13,7 +13,7 @@
       </div>
       <div class="col">
         <%= f.label :ride_in, '経路' %>
-        <%= f.text_field :ride_in, placeholder:'東京駅-大手町', class: 'form-control' %>
+        <%= f.text_field :ride_in, placeholder:'(例) 東京駅-大手町', class: 'form-control' %>
       </div>
     </div>
     <div class="form-group">
@@ -59,11 +59,11 @@
     <div class="form-row">
       <div class="form-group col-md-9">
         <%= f.label :momo, '備考' %>
-        <%= f.text_area :memo, placeholder: 'お疲れ様でした', class: 'form-control' %>
+        <%= f.text_area :memo, placeholder: 'コメントを残すことができます', class: 'form-control' %>
       </div>
       <div class="form-group col-md-3">
         <%= f.label :point, '点数(必須0~10)' %>
-        <%= f.number_field :point, min: '1', class: 'form-control' %>
+        <%= f.number_field :point, min: '1', max: '10', class: 'form-control' %>
       </div>
     </div>
     <%= f.submit 'チェック完了', class: 'btn btn-primary' %>
