@@ -9,8 +9,8 @@
 Employee.create!(
   employee_id: 1,
   name: "管理者サンプルユーザー",
-  password: "password",
-  password_confirmation: "password",
+  password: "admin",
+  password_confirmation: "admin",
   admin: true
 )
 21.times do |n|
