@@ -18,6 +18,7 @@ RSpec.describe 'Sessions', type: :feature do
     fill_in 'session_password', with: 'admin'
     click_button 'ログイン'
     expect(page).to have_current_path('/employees/1')
+    expect(page).to have_content 'ログインしました'
     expect(page).to have_link 'プロフィール'
     expect(page).to have_link '編集'
     expect(page).to have_link 'ログアウト'

@@ -30,6 +30,8 @@ module Procuratio
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-    config.time_zone = 'Asia/Tokyo'
+    config.time_zone = 'Tokyo'
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
+    config.i18n.default_locale = :ja
   end
 end

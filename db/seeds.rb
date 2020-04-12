@@ -6,27 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Employee.create(
+Employee.create!(
   employee_id: 1,
-  name: "admin user",
+  name: "管理者サンプルユーザー",
   password: "admin",
   password_confirmation: "admin",
   admin: true
 )
 21.times do |n|
-  Employee.create(
-    employee_id: n + 1,
-    name: "sample employee#{n + 1}",
+  Employee.create!(
+    employee_id: n + 102,
+    name: "サンプルユーザー#{n + 2}",
     password: "password",
     password_confirmation: "password"
   )
 end
-Attendance.create(
+Attendance.create!(
   employee_id: 2,
   point: 10
 )
 21.times do |n|
-  Attendance.create(
+  Attendance.create!(
     employee_id: 2,
     point: 10
   )
