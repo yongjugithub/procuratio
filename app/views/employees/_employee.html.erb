@@ -1,5 +1,5 @@
 <li class="list-group-item">
-  <%= link_to "#{employee.name}", employee_path(employee.id) %>
+  <%= link_to "#{employee.name}"+"  (従業員コード: #{employee.employee_id})", employee_path(employee.id) %>
   <!-- 管理者ユーザーのみに他のユーザーの削除リンクを表示する  -->
   <% if current_employee.admin? %>
     | <%= link_to "削除", employee, method: :delete, data: {confirm: "このユーザーを削除しますか"} %>
