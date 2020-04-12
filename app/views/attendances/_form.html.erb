@@ -8,8 +8,7 @@
     <div class="form-group row">
       <div class="col">
         <%= f.label :ride_at, '乗車時間' %>
-        <%= f.date_select :ride_at, discard_year:true, use_month_numbers: true, selected: Date.today, date_separator:'/', class: 'form-control' %>
-        <%= f.time_select :ride_at, minute_step: 5, class: 'form-control' %>
+        <%= f.datetime_select :ride_at, discard_year:true, use_month_numbers: true, selected: Date.today, date_separator:'/',selected: Time.now, minute_step: 5, class: 'form-control' %>
       </div>
       <div class="col">
         <%= f.label :ride_in, '経路' %>
@@ -22,39 +21,39 @@
     </div>
     <div class="form-group">
       <%= f.label :attr_two, '2 [行き先の復唱、確認]' %>
-      <%= f.check_box :attr_one, class: 'form-control' %>
+      <%= f.check_box :attr_two, class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= f.label :attr_three, '3 [発車時の後方目視確認及びドア閉めの確認]' %>
-      <%= f.check_box :attr_one, class: 'form-control' %>
+      <%= f.check_box :attr_three, class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= f.label :attr_four, '4 [コースの確認]' %>
-      <%= f.check_box :attr_one, class: 'form-control' %>
+      <%= f.check_box :attr_four, class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= f.label :attr_five, '5 [かしこまりました等の言葉遣い]' %>
-      <%= f.check_box :attr_one, class: 'form-control' %>
+      <%= f.check_box :attr_five, class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= f.label :attr_six, '6 [社名、氏名の名乗り,シートベルトの声かけ]' %>
-      <%= f.check_box :attr_one, class: 'form-control' %>
+      <%= f.check_box :attr_six, class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= f.label :attr_seven, '7 [会計時、料金の確認]' %>
-      <%= f.check_box :attr_one, class: 'form-control' %>
+      <%= f.check_box :attr_seven, class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= f.label :attr_eight, '8 [適切な運転姿勢、服装]' %>
-      <%= f.check_box :attr_one, class: 'form-control' %>
+      <%= f.check_box :attr_eight, class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= f.label :attr_nine, '9 [忘れ物注意の声がけ、確認]' %>
-      <%= f.check_box :attr_one, class: 'form-control' %>
+      <%= f.check_box :attr_nine, class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= f.label :attr_ten, '10 [降車時の挨拶]' %>
-      <%= f.check_box :attr_one, class: 'form-control' %>
+      <%= f.check_box :attr_ten, class: 'form-control' %>
     </div>
     <div class="form-row">
       <div class="form-group col-md-9">
