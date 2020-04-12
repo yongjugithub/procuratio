@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# 関連テーブルの作成は紐づくモデルのIDの変更に注意すること
+# 本番環境のMYSQLではIDが連番ではなく10ごとに飛ぶため文法エラーに注意
 Employee.create!(
   employee_id: 1,
   name: "管理者サンプルユーザー",
@@ -22,12 +24,12 @@ Employee.create!(
   )
 end
 Attendance.create!(
-  employee_id: 2,
+  employee_id: 1,
   point: 10
 )
 21.times do |n|
   Attendance.create!(
-    employee_id: 2,
+    employee_id: 1,
     point: 10
   )
 end
