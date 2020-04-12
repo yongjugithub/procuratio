@@ -45,14 +45,17 @@ RSpec.describe 'Attendances', type: :feature do
       fill_in 'attendance_point', with: ''
       click_button 'チェック完了'
       expect(page).to have_content 'error'
+      # 無効な登録データを送付するとURLが /attendances に変わる
+      expect(page).to have_current_path('/attendances')
     end
 
-    it '有効な値のときサクセスメッセージとともに別のページに偏移する' do
+    it '有効な値のときサクセスメッセージとともに指定のページに偏移する' do
       visit '/attendances/new'
       fill_in 'attendance_employee_id', with: non_admin.id
       fill_in 'attendance_point', with: '9'
       click_button 'チェック完了'
       expect(page).to have_content '完了しました'
+      expect(page).to have_current_path('/attendances')
     end
   end
 
