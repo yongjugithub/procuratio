@@ -15,7 +15,7 @@ Employee.create(
 )
 21.times do |n|
   Employee.create(
-    employee_id: n + 1,
+    employee_id: n + 101,
     name: "サンプルユーザー#{n + 1}",
     password: "password",
     password_confirmation: "password"
