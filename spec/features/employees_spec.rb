@@ -50,7 +50,7 @@ RSpec.describe 'Employees', type: :feature do
       expect(page).to have_current_path(employee_path(admin_employee.id))
       # paginationが機能しているか
       expect(page).to have_selector 'ul.pagination'
-      expect(page).to have_selector 'ul.list-group'
+      expect(page).to have_selector 'table'
     end
 
     it '有効な値で一般ユーザーを新規作成できる' do
