@@ -32,7 +32,7 @@
             <% @attendances.each do |attendance| %>
             <tr>
               <td><%= attendance.employee.employee_id %></td>
-              <td><%= attendance.employee.name %></td>
+              <td><%= link_to "#{attendance.employee.name}",employee_path(attendance.employee.id)  %></td>
               <td><%= attendance.attr_one %></td>
               <td><%= attendance.attr_two %></td>
               <td><%= attendance.attr_three %></td>
