@@ -4,8 +4,39 @@
       <li class="breadcrumb-item active" aria-current="page">ユーザー一覧</li>
     </ol>
   </nav>
-  <%= paginate @employees %>
-    <ul class="list-group">
-      <%= render @employees %>
-    </ul>
+</div>
+<div class="container">
+  <div>
+    <% if @employees.any? %>
+      <div class="container-fluid">
+        <%= paginate @employees %>
+        <div class="table-responsive">
+          <table class="table table-striped table-md">
+            <tr>
+              <th>従業員ID</th>
+              <th>名前</th>
+              <!-- 管理者ユーザーのみに他のユーザーの削除リンクを表示する  -->
+              <% if current_employee.admin? %>
+                <th>ユーザーの削除</th>
+              <% end %>
+            </tr>
+            <% @employees.each do |employee| %>
+            <tr>
+              <td><%= employee.employee_id %></td>
+              <td><%= link_to "#{employee.name}",employee_path(employee.id)  %></td>
+              <!-- 管理者ユーザーのみに他のユーザーの削除リンクを表示する  -->
+              <td>
+                <% if current_employee.admin? %>
+                  <%= link_to "削除", employee, method: :delete, data: {confirm: "このユーザーを削除しますか"} %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    <% else %>
+      <%= "カメラチェックのデータがありません" %>
+    <% end %>
+  </div>
 </div>

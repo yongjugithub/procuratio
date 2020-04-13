@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :logged_in_employee, only: %i[show index edit update destroy]
   before_action :admin_employee, only: %i[destroy]
-  MAX_DISPLAY_EMPLOYEE = 20
+  MAX_DISPLAY_EMPLOYEE = 10
   MAX_DISPLAY_ATTENDANCE = 13
 
   def index
