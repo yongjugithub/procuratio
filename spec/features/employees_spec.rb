@@ -37,6 +37,11 @@ RSpec.describe 'Employees', type: :feature do
       visit '/employees'
       expect(page).to have_current_path(employees_path)
       expect(page).to have_content 'ユーザー一覧'
+      # paginateが機能しているか
+      # expect(page).to have_selector 'ul.pagination'
+      # expect(page).to have_selector 'table'
+      # 管理者のみ削除リンクがあるか
+      # expect(page).to have_selector 'a[data-method=delete]', text: '削除'
     end
 
     it '[edit]にアクセスできる' do
@@ -50,7 +55,7 @@ RSpec.describe 'Employees', type: :feature do
       expect(page).to have_current_path(employee_path(admin_employee.id))
       # paginationが機能しているか
       expect(page).to have_selector 'ul.pagination'
-      expect(page).to have_selector 'ul.list-group'
+      expect(page).to have_selector 'table'
     end
 
     it '有効な値で一般ユーザーを新規作成できる' do

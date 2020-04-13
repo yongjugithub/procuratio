@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Attendances', type: :feature do
   let!(:admin_employee) { create(:employee, employee_id: 1, password: 'admin', password_confirmation: 'admin', admin: true) }
   let!(:non_admin) { create(:employee, employee_id: 2, password: 'password', password_confirmation: 'password') }
+  let!(:attendances) { create_list(:attendance, 11, employee: admin_employee) }
 
   context '未ログイン' do
     it 'attendance[new]にアクセス不可' do
@@ -37,6 +38,11 @@ RSpec.describe 'Attendances', type: :feature do
       visit '/attendances'
       expect(page).to have_no_content 'このページは管理者のみが閲覧できます'
       expect(page).to have_current_path('/attendances')
+      # paginationが機能しているか
+      expect(page).to have_selector 'ul.pagination'
+      expect(page).to have_selector 'table'
+      # ユーザーのリンクが存在するか
+      expect(page).to have_link admin_employee.name
     end
 
     it '無効な値のときエラーメッセージとともに再度フォームを描画する' do
@@ -45,7 +51,7 @@ RSpec.describe 'Attendances', type: :feature do
       fill_in 'attendance_point', with: ''
       click_button 'チェック完了'
       expect(page).to have_content 'error'
-      # 無効な登録データを送付するとURLが /attendances に変わる
+      # 無効な登録データをPOSTするとURLが /attendances に変わる
       expect(page).to have_current_path('/attendances')
     end
 
