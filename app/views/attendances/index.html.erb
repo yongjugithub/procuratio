@@ -15,6 +15,7 @@
             <tr>
               <th>従業員ID</th>
               <th>名前</th>
+              <th>経路</th>
               <th>項目1</th>
               <th>項目2</th>
               <th>項目3</th>
@@ -26,25 +27,24 @@
               <th>項目9</th>
               <th>項目10</th>
               <th>点数</th>
-              <th>経路</th>
               <th>作成時間</th>
             </tr>
             <% @attendances.each do |attendance| %>
             <tr>
               <td><%= attendance.employee.employee_id %></td>
               <td><%= link_to "#{attendance.employee.name}",employee_path(attendance.employee.id)  %></td>
-              <td><%= attendance.attr_one %></td>
-              <td><%= attendance.attr_two %></td>
-              <td><%= attendance.attr_three %></td>
-              <td><%= attendance.attr_four %></td>
-              <td><%= attendance.attr_five %></td>
-              <td><%= attendance.attr_six %></td>
-              <td><%= attendance.attr_seven %></td>
-              <td><%= attendance.attr_eight %></td>
-              <td><%= attendance.attr_nine %></td>
-              <td><%= attendance.attr_ten %></td>
-              <td><%= attendance.point %></td>
               <td><%= attendance.ride_in %></td>
+              <td><%= display_circle(attendance.attr_one) %></td>
+              <td><%= display_circle(attendance.attr_two) %></td>
+              <td><%= display_circle(attendance.attr_three) %></td>
+              <td><%= display_circle(attendance.attr_four) %></td>
+              <td><%= display_circle(attendance.attr_five) %></td>
+              <td><%= display_circle(attendance.attr_six) %></td>
+              <td><%= display_circle(attendance.attr_seven) %></td>
+              <td><%= display_circle(attendance.attr_eight) %></td>
+              <td><%= display_circle(attendance.attr_nine) %></td>
+              <td><%= display_circle(attendance.attr_ten) %></td>
+              <td><%= attendance.point %></td>
               <td><%= attendance.created_at.strftime('%m/%d-%k:%M') %></td>
             </tr>
             <% end %>
