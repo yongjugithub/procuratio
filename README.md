@@ -1,8 +1,7 @@
 # 勤怠管理システム Procuratio
 # Description
-既存の紙ベースの業務をwebシステム化
-従業員の勤怠を管理するアプリ
-従業員は勤務毎に勤務状況に対し、0~10の評価ポイントが与えられる。
+- 現状: 従業員の毎勤務ごとにドライブレコーダーから勤務態度を記録している
+- 概要: この業務をwebシステム化し管理するするのが目的
 
 # Requirements
 - ruby 2.6.3
@@ -14,7 +13,7 @@
 # Docker
 - docker環境構築参照url
 - https://docs.docker.com/compose/rails/
-- docker-compose up --build #イメージからコンテナをビルドすると、以下のコマンド等が使用できる
+- docker-compose up --build #イメージからコンテナをビルドされ、以下のコマンド等が使用できる
 - docker-compose exec web rspec
 - docker-compose exec web rubocop
 
@@ -25,31 +24,31 @@
 - masterブランチが開発ブランチをmargeし、masterブランチを本番環境へデプロイ
 
 # DATABASE
-従業員テーブルと勤怠テーブルが存在する
-employee [employee_id,name,admin,password_digest]
-attendance [employee_id,評価項目12ほど,point]
+- 従業員テーブルと勤怠テーブルが存在する
+- employee [employee_id,name,admin,password_digest]
+- attendance [employee_id,評価項目12ほど(評価基準の変更の可能性あり),point]
 
-Association(モデルの関連)
-従業員テーブルが複数の勤怠モデルを持っている
-employee has_many attendances
+- Association(モデルの関連)
+- 従業員テーブルが複数の勤怠モデルを持っている
+- employee has_many attendances
 
 # Note
-employee_idに一意性をもたせユーザー登録
+- employee_idに一意性をもたせユーザー登録
 
-seedデータとして以下のユーザーを持たせる
+- seedデータとして以下のユーザーを持たせる
 初期ユーザー
 admin user(admin:true,password:"admin",password_confirmation:"admin")
 
-認証(authentication)
+- 認証(authentication)
 ログインは
 employee_idとpasword
 による認証方法。
 
-認可 (authorization)
+- 認可 (authorization)
 管理者権限、管理者ユーザーと一般ユーザーの存在
 管理者ユーザー(admin_employee)が他のユーザーのページにアクセス可能にする
 
-勤怠テーブル
+- 勤怠テーブル
 入力はカメラチェックの評価を入力する形にする
 評価項目は１０個ほど（項目名、数は変更の可能性あり）
 
