@@ -47,18 +47,19 @@ RSpec.describe 'Attendances', type: :feature do
 
     it '無効な値のときエラーメッセージとともに再度フォームを描画する' do
       visit '/attendances/new'
-      fill_in 'attendance_employee_id', with: ''
+      select '選択してください', from: 'attendance_employee_id'
       fill_in 'attendance_point', with: ''
       click_button 'チェック完了'
       expect(page).to have_content 'error'
-      # 無効な登録データをPOSTするとURLが /attendances に変わる
+      # 無効なデータをPOSTするとURLが /attendances に変わる
       expect(page).to have_current_path('/attendances')
     end
 
     it '有効な値のときサクセスメッセージとともに指定のページに偏移する' do
       visit '/attendances/new'
-      fill_in 'attendance_employee_id', with: non_admin.id
-      fill_in 'attendance_point', with: '9'
+      # adminがnon_adminのデータを生成する,複数のnon_adminが選択できるのは原因不明
+      select non_admin.name, match: :first, from: 'attendance_employee_id'
+      fill_in 'attendance_point', with: '10'
       click_button 'チェック完了'
       expect(page).to have_content 'チェック結果が保存されました'
       expect(page).to have_current_path('/attendances')

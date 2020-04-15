@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :employee do
     employee_id { 1 }
-    name { 'test user' }
+    name { 'non_admin' }
     password { 'password' }
     password_confirmation { 'password' }
   end
