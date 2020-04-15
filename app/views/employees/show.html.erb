@@ -35,16 +35,16 @@
             <tr>
               <td><%= attendance.ride_at %></td>
               <td><%= attendance.ride_in %></td>
-              <td><%= attendance.attr_one %></td>
-              <td><%= attendance.attr_two %></td>
-              <td><%= attendance.attr_three %></td>
-              <td><%= attendance.attr_four %></td>
-              <td><%= attendance.attr_five %></td>
-              <td><%= attendance.attr_six %></td>
-              <td><%= attendance.attr_seven %></td>
-              <td><%= attendance.attr_eight %></td>
-              <td><%= attendance.attr_nine %></td>
-              <td><%= attendance.attr_ten %></td>
+              <td><%= display_circle(attendance.attr_one) %></td>
+              <td><%= display_circle(attendance.attr_two) %></td>
+              <td><%= display_circle(attendance.attr_three) %></td>
+              <td><%= display_circle(attendance.attr_four) %></td>
+              <td><%= display_circle(attendance.attr_five) %></td>
+              <td><%= display_circle(attendance.attr_six) %></td>
+              <td><%= display_circle(attendance.attr_seven) %></td>
+              <td><%= display_circle(attendance.attr_eight) %></td>
+              <td><%= display_circle(attendance.attr_nine) %></td>
+              <td><%= display_circle(attendance.attr_ten) %></td>
               <td><%= attendance.point %></td>
               <td><%= attendance.created_at.strftime('%m/%d-%k:%M') %></td>
             </tr>
