@@ -1,15 +1,75 @@
 version: 2.1
-orbs:
-  ruby: circleci/ruby@0.1.2 
-
 jobs:
-  build:
+  rspec:
+    working_directory: ~/procuratio
     docker:
-      - image: circleci/ruby:2.6.3-stretch-node
-    executor: ruby/default
+    - image: circleci/ruby:2.6.3  # 言語イメージ
+      environment:
+        BUNDLE_JOBS: 3
+        BUNDLE_RETRY: 3
+        BUNDLE_PATH: vendor/bundle
+        PGHOST: 127.0.0.1
+        PGUSER: circleci-demo-ruby
+        RAILS_ENV: test
+    - image: circleci/mysql:8.0 #サービスイメージ
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD=1
     steps:
-      - checkout
-      - run:
-          name: Which bundler?
-          command: bundle -v
-      - ruby/bundle-install
+    # バンドルキャッシュを復元します
+
+    - restore_cache:
+        keys:
+          - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          - rails-demo-bundle-v2-
+
+    - run:
+        name: バンドルインストール
+        command: bundle check || bundle install
+
+    # バンドルキャッシュを保存します
+
+    - save_cache:
+        key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+    # アプリケーションで Webpacker または Yarn を他の何らかの方法で使用する場合にのみ必要です
+
+    - restore_cache:
+        keys:
+          - rails-demo-yarn-{{ checksum "yarn.lock" }}
+          - rails-demo-yarn-
+
+    - run:
+        name: Yarn をインストール
+        command: yarn install --cache-folder ~/.cache/yarn
+
+    # Yarn または Webpacker のキャッシュを保存します
+
+    - save_cache:
+        key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+        paths:
+          - ~/.cache/yarn
+
+    # データベースをセットアップします
+
+  - run:
+      name: DB を待機
+      command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+  - run:
+      name: データベースをセットアップ
+      command: bin/rails db:schema:load --trace
+
+  # RSpec を並列実行します
+
+  - run: |
+      bundle exec rspec --profile 10 \
+                        --format RspecJunitFormatter \
+                        --out test_results/rspec.xml \
+                        --format progress \
+                        $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+  # タイミング解析のテスト結果を保存します
+
+  - store_test_results:
+      path: test_results
