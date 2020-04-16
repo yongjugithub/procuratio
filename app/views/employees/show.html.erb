@@ -33,7 +33,7 @@
             </tr>
             <% @attendances.each do |attendance| %>
             <tr>
-              <td><%= attendance.ride_at %></td>
+              <td><%= display_JPtime(attendance.ride_at) %></td>
               <td><%= attendance.ride_in %></td>
               <td><%= display_circle(attendance.attr_one) %></td>
               <td><%= display_circle(attendance.attr_two) %></td>
@@ -46,7 +46,7 @@
               <td><%= display_circle(attendance.attr_nine) %></td>
               <td><%= display_circle(attendance.attr_ten) %></td>
               <td><%= attendance.point %></td>
-              <td><%= attendance.created_at.strftime('%m/%d-%k:%M') %></td>
+              <td><%= display_JPtime(attendance.created_at) %></td>
             </tr>
             <% end %>
           </table>

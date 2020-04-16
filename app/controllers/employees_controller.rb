@@ -10,7 +10,7 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
-    @attendances = @employee.attendances.page(params[:page]).per(MAX_DISPLAY_ATTENDANCE)
+    @attendances = @employee.attendances.order('created_at DESC').page(params[:page]).per(MAX_DISPLAY_ATTENDANCE)
   end
 
   def new
