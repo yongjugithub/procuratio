@@ -25,11 +25,21 @@ Employee.create!(
 end
 Attendance.create!(
   employee_id: 1,
-  point: 10
+  point: 0
 )
 21.times do |n|
   Attendance.create!(
     employee_id: 1,
+    attr_one: true,
+    attr_two: true,
+    attr_three: true,
+    attr_four: true,
+    attr_five: true,
+    attr_six: true,
+    attr_seven: true,
+    attr_eight: true,
+    attr_nine: true,
+    attr_ten: true,
     point: 10
   )
 end
