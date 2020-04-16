@@ -4,7 +4,7 @@ class AttendancesController < ApplicationController
   MAX_DISPLAY_ATTENDANCE = 10
 
   def index
-    @attendances = Attendance.order('created_at DESC').page(params[:page]).per(MAX_DISPLAY_ATTENDANCE)
+    @attendances = Attendance.includes(:employee).order('created_at DESC').page(params[:page]).per(MAX_DISPLAY_ATTENDANCE)
   end
 
   def new
