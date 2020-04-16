@@ -30,6 +30,7 @@ Attendance.create!(
 21.times do |n|
   Attendance.create!(
     employee_id: 1,
+    ride_in: "東京駅 ~ 渋谷",
     attr_one: true,
     attr_two: true,
     attr_three: true,
