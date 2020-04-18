@@ -33,7 +33,9 @@
 
 - Association(モデルの関連)
 - 従業員テーブルが複数の勤怠モデルを持っている
-![ER図](https://github.com/yongjugithub/procuratio/issues/20)
+
+# ER図
+([erd.pdf](https://github.com/yongjugithub/procuratio/files/4496232/erd.pdf))
 
 # Note
 - employee_idに一意性をもたせユーザー登録
