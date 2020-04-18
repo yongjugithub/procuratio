@@ -5,8 +5,9 @@ RSpec.describe 'Employees', type: :request do
   let(:non_admin) { create(:employee, id: 2, admin: false) }
 
   describe 'Employeeモデル APIテスト' do
-    context 'when ユーザー登録' do
+    context 'ログイン' do
       it '有効な属性値の場合ユーザが登録され,リダイレクトされる' do
+        log_in_as(admin_employee)
         get new_employee_path
         expect(response).to have_http_status(:success)
         expect do
@@ -21,10 +22,9 @@ RSpec.describe 'Employees', type: :request do
         end.to change(Employee, :count).by(1)
         expect(response.status).to eq 302
       end
-    end
 
-    context 'ユーザー登録' do
       it '無効な属性値の場合ユーザが登録されず,リダイレクトされる' do
+        log_in_as(admin_employee)
         expect do
           post employees_url, params: {
             employee: {
@@ -36,12 +36,8 @@ RSpec.describe 'Employees', type: :request do
           }
         end.to change(Employee, :count).by(0)
         expect(response.status).to eq 200
-        # TestHelperを呼び出し、ログイン失敗でfalseを返す
-        expect(is_logged_in?).to be_falsey
       end
-    end
 
-    context 'ログイン' do
       it '有効な属性値の場合、編集が成功する' do
         log_in_as(admin_employee)
         get edit_employee_path(admin_employee.id)
@@ -57,9 +53,7 @@ RSpec.describe 'Employees', type: :request do
         expect(response.status).to eq 302
         render_template employees_path(admin_employee.id)
       end
-    end
 
-    context 'ログイン' do
       it '無効な属性値の場合、編集が失敗する' do
         log_in_as(admin_employee)
         get edit_employee_path(admin_employee.id)

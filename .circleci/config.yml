@@ -1,15 +1,45 @@
-version: 2.1
-orbs:
-  ruby: circleci/ruby@0.1.2 
-
+# 参考URL
+# https://circleci.com/docs/2.0/language-ruby/
+# https://circleci.com/docs/ja/2.0/postgres-config/#structuresql-%E3%82%92%E4%BD%BF%E3%81%86-rails-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E7%94%A8%E3%81%AE%E8%A8%AD%E5%AE%9A%E4%BE%8B
+version: 2.0
+workflows:
 jobs:
   build:
+    working_directory: ~/procuratio
     docker:
-      - image: circleci/ruby:2.6.3-stretch-node
-    executor: ruby/default
+      - image: circleci/ruby:2.6.3-stretch-node-browsers-legacy
+        environment: # environment variables for primary container
+            BUNDLE_JOBS: 3
+            BUNDLE_RETRY: 3
+            BUNDLE_PATH: vendor/bundle
+            RAILS_ENV: test
+      - image: circleci/mysql:8.0.4
+        environment:
+          MYSQL_ROOT_PASSWORD: root
     steps:
       - checkout
       - run:
           name: Which bundler?
           command: bundle -v
-      - ruby/bundle-install
+      - run: # Install Ruby dependencies
+          name: Bundle Install
+          command: bundle check --path vendor/bundle || bundle install --deployment
+      - run:
+          name: Wait for DB
+          # circleci/* の Docker イメージにプリインストール
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+      - run:
+          name: Run rubocop
+          command: bundle exec rubocop
+      #- run:
+      #    name: Run Rspec
+      #    command: |
+      #      mkdir /tmp/test-results
+      #      TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      #      bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
+
+      #- store_test_results:
+      #    path: /tmp/test-results
+      #- store_artifacts:
+      #    path: /tmp/test-results
+      #    destination: test-results

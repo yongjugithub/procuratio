@@ -1,7 +1,7 @@
 # https://docs.docker.com/compose/rails/
 
 FROM ruby:2.6.3
-RUN apt-get update -qq && apt-get install -y nodejs yarn
+RUN apt-get update -qq && apt-get install -y nodejs yarn graphviz
 
 RUN mkdir /procuratio
 WORKDIR /procuratio

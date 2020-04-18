@@ -11,11 +11,14 @@
 - デザインフレームワーク:bootstrap
 
 # Docker
-- docker環境構築参照url
+- docker環境構築参照URL
 - https://docs.docker.com/compose/rails/
-- docker-compose up --build #イメージからコンテナをビルドされ、以下のコマンド等が使用できる
+- イメージからコンテナをビルドされ、以下のコマンド等が使用できる
+```
+- docker-compose up --build
 - docker-compose exec web rspec
 - docker-compose exec web rubocop
+```
 
 # development policy
 - gitの開発ブランチで開発をおこなう
@@ -30,7 +33,10 @@
 
 - Association(モデルの関連)
 - 従業員テーブルが複数の勤怠モデルを持っている
-- employee has_many attendances
+
+# ER図
+<img alt="erd.pdf"
+src="https://github.com/yongjugithub/procuratio/files/4496263/erd.pdf">
 
 # Note
 - employee_idに一意性をもたせユーザー登録

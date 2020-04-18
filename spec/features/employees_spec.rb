@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Employees', type: :feature do
   # featureSpecではlog_in_asヘルパーメソッドが作動しない
-  let!(:admin_employee) { create(:employee, employee_id: 1, password: 'admin', password_confirmation: 'admin', admin: true) }
+  let!(:admin_employee) { create(:employee, admin: true) }
   let!(:attendances) { create_list(:attendance, 14, employee: admin_employee) }
 
   context '未ログイン時' do
@@ -18,6 +18,12 @@ RSpec.describe 'Employees', type: :feature do
       expect(page).to have_content 'ログインが必要です'
     end
 
+    it '[new]にアクセス不可' do
+      visit '/employees/new'
+      expect(page).to have_current_path('/login')
+      expect(page).to have_content 'ログインが必要です'
+    end
+
     it '[edit]にアクセス不可' do
       visit edit_employee_path(admin_employee.id)
       expect(page).to have_current_path('/login')
@@ -28,8 +34,8 @@ RSpec.describe 'Employees', type: :feature do
   context '管理者としてログイン' do
     before do
       visit '/login'
-      fill_in 'session_employee_id', with: 1
-      fill_in 'session_password', with: 'admin'
+      fill_in 'session_employee_id', with: admin_employee.employee_id
+      fill_in 'session_password', with: admin_employee.password
       click_button 'ログイン'
     end
 
@@ -37,11 +43,11 @@ RSpec.describe 'Employees', type: :feature do
       visit '/employees'
       expect(page).to have_current_path(employees_path)
       expect(page).to have_content 'ユーザー一覧'
-      # paginateが機能しているか
+      # employees の　paginateが機能しているか
       # expect(page).to have_selector 'ul.pagination'
-      # expect(page).to have_selector 'table'
+      expect(page).to have_selector 'div.table-responsive'
       # 管理者のみ削除リンクがあるか
-      # expect(page).to have_selector 'a[data-method=delete]', text: '削除'
+      expect(page).to have_selector 'a[data-method=delete]', text: '削除'
     end
 
     it '[edit]にアクセスできる' do
@@ -50,15 +56,21 @@ RSpec.describe 'Employees', type: :feature do
       expect(page).to have_content '編集画面'
     end
 
+    it '[new]にアクセスできる' do
+      visit new_employee_path
+      expect(page).to have_current_path(new_employee_path)
+      expect(page).to have_content '新規登録'
+    end
+
     it '[show]にアクセスできる' do
       visit employee_path(admin_employee.id)
       expect(page).to have_current_path(employee_path(admin_employee.id))
-      # paginationが機能しているか
+      # attendances の　paginationが機能しているか
       expect(page).to have_selector 'ul.pagination'
       expect(page).to have_selector 'table'
     end
 
-    it '有効な値で一般ユーザーを新規作成できる' do
+    it '[new,create]有効な値で一般ユーザーを新規作成できる' do
       visit '/employees/new'
 
       expect do

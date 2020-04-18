@@ -38,6 +38,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem "factory_bot_rails"
   gem 'capybara'
+  # circleCI用
+  gem 'rspec_junit_formatter'
 end
 
 group :development do
@@ -49,6 +51,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec'
+  gem 'rails-erd'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
