@@ -36,7 +36,7 @@
 
 # ER図
 <img alt="erd.pdf"
-src="https://github.com/yongjugithub/procuratio/blob/attendance/erd.pdf">
+src="https://github.com/yongjugithub/procuratio/files/4496263/erd.pdf">
 
 # Note
 - employee_idに一意性をもたせユーザー登録
