@@ -11,7 +11,7 @@
 - デザインフレームワーク:bootstrap
 
 # Docker
-- docker環境構築参照url
+- docker環境構築参照URL
 - https://docs.docker.com/compose/rails/
 - イメージからコンテナをビルドされ、以下のコマンド等が使用できる
 ```
@@ -35,7 +35,7 @@
 - 従業員テーブルが複数の勤怠モデルを持っている
 
 # ER図
-([erd.pdf](https://github.com/yongjugithub/procuratio/files/4496232/erd.pdf))
+([erd.pdf](https://github.com/yongjugithub/procuratio/blob/attendance/erd.pdf))
 
 # Note
 - employee_idに一意性をもたせユーザー登録
