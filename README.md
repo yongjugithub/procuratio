@@ -35,7 +35,8 @@
 - 従業員テーブルが複数の勤怠モデルを持っている
 
 # ER図
-([erd.pdf](https://github.com/yongjugithub/procuratio/blob/attendance/erd.pdf))
+<img alt="erd.pdf"
+src="https://github.com/yongjugithub/procuratio/blob/attendance/erd.pdf">
 
 # Note
 - employee_idに一意性をもたせユーザー登録
