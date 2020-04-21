@@ -76,6 +76,7 @@ RSpec.describe 'Employees', type: :request do
         get edit_employee_path(admin_employee.id)
         render_template login_path
       end
+
       it 'PATCHリクエストが拒否される' do
         get edit_employee_path(admin_employee.id)
         patch employee_url, params: {

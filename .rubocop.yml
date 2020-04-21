@@ -29,7 +29,7 @@ AllCops:
     # docker化後追記
     - 'vendor/**/*'
 
-# 新しいオプション(20200323)
+# 2020,03,23~ 新しいオプション 
 Style/HashEachMethods:
   Enabled: true
 
@@ -39,6 +39,20 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: true
 # ここまで
+
+# 2020,04,21~ 新しいオプション
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Style/ExponentialNotation:
+  Enabled: true
+#ここまで
 
 #コメントにASCII文字を使って良い
 Style/AsciiComments:
@@ -75,4 +89,8 @@ RSpec/ExampleLength:
 
 #空のテストがあっても良い
 RSpec/EmptyExampleGroup:
+  Enabled: false
+
+# この書き方があまり好きでない
+RSpec/DescribedClass:
   Enabled: false
