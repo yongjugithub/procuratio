@@ -1,10 +1,8 @@
 # 参考: https://docs.docker.com/compose/rails/
-# ruby環境にnodejs(サーバーサイドでjavascriptを実行)とyarn、ER図の出力に必要なgraphvizを指定
+# ruby環境にnodejs(サーバーサイドでjavascriptを実行)とyarn
 
 FROM ruby:2.6.3
-RUN apt-get update -qq && apt-get install -y nodejs yarn graphviz
-
-# workdirでファイルパスがない場合、自動でmkdirされるためmkdirは省略
+RUN apt-get update -qq && apt-get install -y nodejs yarn
 
 WORKDIR /procuratio
 COPY ./Gemfile /procuratio/Gemfile
