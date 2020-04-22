@@ -37,7 +37,7 @@
     <span class="nav-item ml-auto">
       <%= "ログインユーザー > 乗務員コード: #{current_employee.employee_id}" %>
       <%= "/ #{current_employee.name}" %>
-      <%= "/ 管理者権限: #{current_employee.admin?}" %>
+      <%= "/ 管理者権限: #{display_circle(current_employee.admin)}" %>
     </span>
   </nav>
 <% end %>
