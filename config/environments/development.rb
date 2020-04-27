@@ -7,10 +7,7 @@ Rails.application.configure do
   config.cache_classes = false
 
   # Do not eager load code on boot.
-  # er図のためtrueに変更
   config.eager_load = false
-
-  config.webpacker.check_yarn_integrity = false
 
   # Show full error reports.
   config.consider_all_requests_local = true
