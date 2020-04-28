@@ -5,7 +5,12 @@ class EmployeesController < ApplicationController
   MAX_DISPLAY_ATTENDANCE = 13
 
   def index
-    @employees = Employee.page(params[:page]).per(MAX_DISPLAY_EMPLOYEE)
+    if params[:name].present?
+      @employees = Employee.where('name=?', params[:name]).page(params[:page])
+      flash.now[:success] = '１件の検索結果' if @employees.present?
+    else
+      @employees = Employee.page(params[:page]).per(MAX_DISPLAY_EMPLOYEE)
+    end
   end
 
   def show
