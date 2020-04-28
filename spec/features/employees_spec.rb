@@ -48,6 +48,13 @@ RSpec.describe 'Employees', type: :feature do
       expect(page).to have_selector 'div.table-responsive'
       # 管理者のみ削除リンクがあるか
       expect(page).to have_selector 'a[data-method=delete]', text: '削除'
+      # 検索機能
+      fill_in 'name', with: admin_employee.name
+      click_button '検索'
+      expect(page).to have_content '１件の検索結果'
+      fill_in 'name', with: 'failure'
+      click_button '検索'
+      expect(page).to have_content '該当するユーザーがいないか、データがありません'
     end
 
     it '[edit]にアクセスできる' do

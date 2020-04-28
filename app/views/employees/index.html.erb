@@ -1,8 +1,12 @@
-<div class="container">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item active" aria-current="page">ユーザー一覧</li>
-    </ol>
+<div class="container-fluid">
+  <nav class="navbar navbar-white bg-white">
+    <span class="navbar-text">ユーザー一覧</span>
+    <div class="form-inline">
+      <%= form_with url:'/employees', method: :get, local: true do |f| %>
+        <%= f.text_field :name %>
+        <%= f.submit('名前で検索') %>
+      <% end %>
+    </div>
   </nav>
 </div>
 <div class="container">
@@ -36,7 +40,7 @@
         </div>
       </div>
     <% else %>
-      <%= "カメラチェックのデータがありません" %>
+      <%= "該当するユーザーがいないか、データがありません" %>
     <% end %>
   </div>
 </div>

@@ -29,7 +29,7 @@ AllCops:
     # docker化後追記
     - 'vendor/**/*'
 
-# 2020,03,23~ 新しいオプション 
+# 2020,03,23~ 新しいオプション
 Style/HashEachMethods:
   Enabled: true
 
@@ -70,6 +70,11 @@ Style/Documentation:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+
+#ABC Sizeの基準を緩める
+Metrics/AbcSize:
+  Enabled: true
+  Max: 20
 
 #it ''　内で日本語の使用を許可する
 RSpec/ContextWording:
