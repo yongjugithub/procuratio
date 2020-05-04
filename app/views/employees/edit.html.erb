@@ -1,9 +1,11 @@
+<nav aria-label="パンくずリスト">
+  <ol class="breadcrumb mb-1">
+    <li class="breadcrumb-item"><a>トップ</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      <a>ユーザー情報編集</a></li>
+  </ol>
+</nav>
 <div class="container">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item active" aria-current="page">編集画面</li>
-    </ol>
-  </nav>
   <%= form_with(model: @employee, local: true) do |f| %>
   <%= render 'layouts/error_messages', object: f.object %>
   <div class="form-group">
