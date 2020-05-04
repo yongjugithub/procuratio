@@ -1,8 +1,10 @@
+<nav aria-label="パンくずリスト">
+  <ol class="breadcrumb mb-1">
+    <li class="breadcrumb-item"><a>トップ</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      <a>カメラチェック - 従業員名とポイントは必ず入力する必要があります</a></li>
+  </ol>
+</nav>
 <div class="container">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">カメラチェック - 従業員名とポイントは必ず入力する必要があります</li>
-    </ol>
-  </nav>
   <%= render 'form', attendance: @attendance %>
 </div>

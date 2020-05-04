@@ -60,7 +60,7 @@ RSpec.describe 'Employees', type: :feature do
     it '[edit]にアクセスできる' do
       visit edit_employee_path(admin_employee.id)
       expect(page).to have_current_path(edit_employee_path(admin_employee.id))
-      expect(page).to have_content '編集画面'
+      expect(page).to have_content '編集'
     end
 
     it '[new]にアクセスできる' do

@@ -1,13 +1,15 @@
-<div class="container">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">プロフィール</li>
-      <li class="breadcrumb-item  active" aria-current="page">乗務員コード: <%= @employee.employee_id %></li>
-      <li class="breadcrumb-item  active" aria-current="page">名前: <%= @employee.name %></li>
-      <li class="breadcrumb-item  active" aria-current="page">管理者属性: <%= @employee.admin? %></li>
-    </ol>
-  </nav>
-</div>
+<nav aria-label="パンくずリスト">
+  <ol class="breadcrumb mb-1">
+    <li class="breadcrumb-item"><a>トップ</a></li>
+    <li class="breadcrumb-item">プロフィール</li>
+    <li class="breadcrumb-item  active" aria-current="page">乗務員コード: <%= @employee.employee_id %></li>
+    <li class="breadcrumb-item  active" aria-current="page">名前: <%= @employee.name %></li>
+    <li class="breadcrumb-item  active" aria-current="page">管理者属性: <%= @employee.admin? %></li>
+  </ol>
+</nav>
+<nav class="navbar navbar-white bg-white">
+  <span class="navbar-text"></span>
+</nav>
 <div class="container-fluid">
   <div>
     <% if @employee.attendances.any? %>

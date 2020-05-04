@@ -1,6 +1,12 @@
-<div class="container-fluid">
+<nav aria-label="パンくずリスト">
+  <ol class="breadcrumb mb-1">
+    <li class="breadcrumb-item"><a>トップ</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a>ユーザー一覧</a></li>
+  </ol>
+</nav>
+<div class="container">
   <nav class="navbar navbar-white bg-white">
-    <span class="navbar-text">ユーザー一覧</span>
+    <span class="navbar-text">　</span>
     <div class="form-inline">
       <%= form_with url:'/employees', method: :get, local: true do |f| %>
         <%= f.text_field :name %>

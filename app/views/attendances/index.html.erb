@@ -1,10 +1,12 @@
-<div class="container">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item" aria-current="page">カメラチェック結果一覧</li>
-    </ol>
-  </nav>
-</div>
+<nav aria-label="パンくずリスト">
+  <ol class="breadcrumb mb-1">
+    <li class="breadcrumb-item"><a>トップ</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a>カメラチェック結果一覧</a></li>
+  </ol>
+</nav>
+<nav class="navbar navbar-white bg-white">
+  <span class="navbar-text"></span>
+</nav>
 <div class="container-fluid">
   <div>
     <% if @attendances.any? %>
