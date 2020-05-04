@@ -12,18 +12,19 @@
         <li class="nav-item active">
           <%= link_to "カメラチェック結果一覧", attendances_path, class: "nav-link"  %>
         </li>
-        <li class="nav-item">
-          <%= link_to "プロフィール", current_employee, class: "nav-link"  %>
-        </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <%= link_to "ユーザー一覧", employees_path, class: "nav-link"  %>
         </li>
-        <li class="nav-item">
-          <%= link_to "編集", edit_employee_path(current_employee), class: "nav-link"  %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link"  %>
-        </li>
+        <ul class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <%= "#{current_employee.name}" %>
+          </a>
+          <div class="dropdown-menu">
+            <%= link_to "プロフィール", current_employee, class: "dropdown-item"  %>
+            <%= link_to "編集", edit_employee_path(current_employee), class: "dropdown-item"  %>
+            <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item"  %>
+          </div>
+        </ul>
         <% else %>
         <li class="nav-item">
           <%= link_to "ログイン", login_path, class: "nav-link"  %>
@@ -32,12 +33,3 @@
     </ul>
   </div>
 </div>
-<% if logged_in? %>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <span class="nav-item ml-auto">
-      <%= "ログインユーザー > 乗務員コード: #{current_employee.employee_id}" %>
-      <%= "/ #{current_employee.name}" %>
-      <%= "/ 管理者権限: #{display_circle(current_employee.admin)}" %>
-    </span>
-  </nav>
-<% end %>
