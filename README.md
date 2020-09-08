@@ -17,9 +17,10 @@
 # Docker
 - docker環境構築参照URL
 - https://docs.docker.com/compose/rails/
-- イメージからコンテナをビルドされ、以下のコマンド等が使用できる
+- イメージからコンテナをビルドし、以下のコマンド等が使用できる
 ```
-- docker-compose up --build
+- docker-compose build
+- docker-compose up
 - docker-compose exec web rspec
 - docker-compose exec web rubocop
 ```
