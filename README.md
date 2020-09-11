@@ -1,4 +1,4 @@
-# 勤怠管理システム Procuratio
+# 勤怠管理システム https://procuratio.herokuapp.com/login
 # Description
 - 現状: 従業員の毎勤務ごとにドライブレコーダーから勤務態度を記録している
 - 概要: この業務をwebシステム化し管理するするのが目的
@@ -21,8 +21,6 @@
 ```
 - docker-compose build
 - docker-compose up
-- docker-compose exec web rspec
-- docker-compose exec web rubocop
 ```
 
 # development policy
